@@ -1,0 +1,268 @@
+<div class="wrapper">
+  <div class="modal-content">
+    <form
+      nz-form
+      style="width: 100%"
+      [formGroup]="formValidation"
+      method="POST"
+    >
+      <!-- row 1 -->
+      <div nz-row class="d-flex flex-row" [nzGutter]="8">
+        <div nz-col [nzSpan]="24">
+          <nz-form-item nz-row [nzGutter]="2">
+            <nz-form-label nz-col [nzSpan]="3">
+              Tên <span style="color: red">*</span>
+            </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="21" [nzErrorTip]="Name">
+              <input
+                nz-input
+                placeholder="Tên dự án"
+                formControlName="name"
+                name="name"
+                [readonly]="mode === 'view'"
+                [ngClass]="mode === 'view' ? 'ban' : ''"
+                required
+              />
+              <ng-template #Name let-control>
+                <ng-container *ngIf="control.hasError('minlength')"
+                  >Tên cần tối thiểu 5 ký tự</ng-container
+                >
+                <ng-container *ngIf="control.hasError('required')"
+                  >Mục này không được để trống</ng-container
+                >
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <!-- row 2 -->
+
+      <div nz-row class="d-flex flex-row" [nzGutter]="8">
+        <div nz-col [nzSpan]="24">
+          <nz-form-item nz-row [nzGutter]="2">
+            <nz-form-label nz-col [nzSpan]="3"> Doanh thu </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="21" [nzErrorTip]="Revenue">
+              <input
+                nz-input
+                currencyMask
+                [options]="{
+                  thousands: ',',
+                  align: 'left',
+                  prefix: '',
+                  precision: 0
+                }"
+                placeholder="Doanh thu dự án"
+                formControlName="revenue"
+                name="revenue"
+                [readonly]="mode === 'view'"
+                [ngClass]="mode === 'view' ? 'ban' : ''"
+              />
+              <ng-template #Revenue let-control>
+                <ng-container *ngIf="control.hasError('max')">
+                  Tối đa 11 ký tự
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <!-- row 3 -->
+      <div nz-row class="d-flex flex-row" [nzGutter]="8">
+        <div nz-col [nzSpan]="24">
+          <nz-form-item nz-row [nzGutter]="2">
+            <nz-form-label [nzSpan]="3" style="word-wrap: break-word">
+              Ngày
+            </nz-form-label>
+            <nz-form-control [nzSpan]="21">
+              <nz-range-picker
+                style="width: 100%"
+                name="rangeDate"
+                formControlName="rangeDate"
+                [nzDisabled]="mode === 'view'"
+              ></nz-range-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <!-- row 4 -->
+      <div nz-row class="d-flex flex-row" [nzGutter]="8">
+        <div nz-col [nzSpan]="12">
+          <nz-form-item nz-row [nzGutter]="2">
+            <nz-form-label nz-col [nzSpan]="6"> Tổng chi phí </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="18" [nzErrorTip]="TotalCost">
+              <input
+                nz-input
+                currencyMask
+                [options]="{
+                  thousands: ',',
+                  align: 'left',
+                  prefix: '',
+                  precision: 0
+                }"
+                placeholder="Tổng chi phí dự án"
+                formControlName="totalCost"
+                name="totalCost"
+                [readonly]="mode === 'view'"
+                [ngClass]="mode === 'view' ? 'ban' : ''"
+              />
+              <ng-template #TotalCost let-control>
+                <ng-container *ngIf="control.hasError('max')"
+                  >Tối đa 11 ký tự</ng-container
+                >
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzSpan]="12">
+          <nz-form-item nz-row [nzGutter]="2">
+            <nz-form-label nz-col [nzSpan]="6"> Tổng thời gian </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="18" [nzErrorTip]="TotalHour">
+              <input
+                nz-input
+                currencyMask
+                [options]="{
+                  thousands: ',',
+                  align: 'left',
+                  prefix: '',
+                  precision: 0
+                }"
+                placeholder="Tổng thời gian dự án (h)"
+                formControlName="totalHour"
+                name="totalHour"
+                [readonly]="mode === 'view'"
+                [ngClass]="mode === 'view' ? 'ban' : ''"
+              />
+              <ng-template #TotalHour let-control>
+                <ng-container *ngIf="control.hasError('max')"
+                  >Tối đa 11 ký tự</ng-container
+                >
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <!-- row 4 -->
+      <div *ngIf="mode === 'update'" nz-row [nzGutter]="2">
+        <div nz-col [nzSpan]="6">
+          <div class="p-2">
+            <button
+              nz-button
+              class="float-left d-flex align-items-center"
+              nzType="primary"
+              nzTooltipTitle="Thêm subtask"
+              nzTooltipPlacement="bottom"
+              nz-tooltip
+              (click)="addSubProject()"
+            >
+              <span nz-icon nzType="plus" nzTheme="outline"></span>
+              <span>Sub project</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="mode !== 'create'" nz-row class="mt-3" [nzGutter]="1">
+        <div nz-col [nzSpan]="24">
+          <nz-table
+            nzBordered="false"
+            [nzData]="subProjectList"
+            nzShowPagination="false"
+          >
+            <thead>
+              <tr>
+                <th nzAlign="center" nzWidth="30%">Tên</th>
+                <th nzAlign="center">Doanh thu</th>
+                <th nzAlign="center">Ngày bắt đầu</th>
+                <th nzAlign="center">Ngày kết thúc</th>
+                <th nzAlign="center" [hidden]="mode === 'view'">Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of subProjectList; let idx = index">
+                <td
+                  nzAlign="center"
+                  nzWidth="30%"
+                  style="cursor: pointer"
+                  nz-tooltip
+                  [nzTooltipTitle]="item.name"
+                  [nzTooltipTrigger]="item.name.length > 5 ? 'hover' : null"
+                >
+                  {{
+                    item.name.length > 5
+                      ? (item.name | slice : 0 : 5) + "..."
+                      : item.name
+                  }}
+                </td>
+                <td nzAlign="center">
+                  {{ item.revenue | currency : "VND" : "symbol" : "" : "vi" }}
+                </td>
+                <td nzAlign="center">
+                  {{ item.startDate | date : "dd/MM/yyyy" }}
+                </td>
+                <td nzAlign="center">
+                  {{ item.endDate | date : "dd/MM/yyyy" }}
+                </td>
+                <td
+                  class="d-flex flex-row justify-content-center"
+                  [hidden]="mode === 'view'"
+                >
+                  <!-- <button
+                    nz-button
+                    nzShape="circle"
+                    class="d-flex align-items-center justify-content-center mr-1"
+                    [routerLink]="['welcome', item.id]"
+                  >
+                    <i nz-icon nzType="link" nzTheme="outline"></i>
+                  </button> -->
+                  <button
+                    nz-button
+                    nzShape="circle"
+                    class="d-flex align-items-center justify-content-center mr-1"
+                    (click)="onView(item)"
+                  >
+                    <i nz-icon nzType="eye" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzShape="circle"
+                    class="d-flex align-items-center justify-content-center mr-1"
+                    (click)="onUpdate(item)"
+                  >
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzShape="circle"
+                    class="d-flex align-items-center justify-content-center mr-1"
+                    (click)="onDelete(item.id)"
+                  >
+                    <i nz-icon nzType="delete" nzTheme="outline"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center" *nzModalFooter>
+  <button
+    [hidden]="mode === 'view'"
+    nz-button
+    nzType="primary"
+    [disabled]="!formValidation.valid"
+    (click)="handleOk()"
+    [nzLoading]="isConfirmLoading"
+  >
+    Lưu
+  </button>
+  <button nz-button nzType="default" (click)="handleCancel()">Hủy</button>
+</div>

@@ -1,0 +1,49 @@
+.tag-wrapper {
+  padding: 5px 10px;
+}
+
+.test {
+  border: 1px solid #000;
+  height: 300px;
+}
+
+.grid-box-color {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.color-box {
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 2px transparent solid;
+  height: 32px;
+  cursor: pointer;
+}
+
+.grid-wrapper {
+  position: relative;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 1px 1px #0003, 0 1px 1px 1px #00000024, 0 1px 1px 1px #0000001f;
+}
+
+.delete-grid-item {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  right: 15px;
+  top: 10px
+}
