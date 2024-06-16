@@ -1,0 +1,46 @@
+<ng-container *ngIf="isDialog else tmplUploadFile">
+    <nz-upload nzType="drag" [nzMultiple]="true" (nzChange)="handleChange($event)" [nzBeforeUpload]="beforeUpload"
+        [(nzFileList)]="fileList" [nzShowUploadList]="showUploadList" [nzFileListRender]="tmplFileList">
+        <p class="ant-upload-drag-icon">
+            <span nz-icon nzType="inbox"></span>
+        </p>
+        <p class="ant-upload-text">Click hoặc kéo thả file vào vùng upload</p>
+        <p class="ant-upload-hint">
+            Hỗ trợ upload 1 file hoặc nhiều file
+        </p>
+        <!-- <ng-container *ngIf="!uploading else percentage">
+
+        </ng-container> -->
+    </nz-upload>
+
+</ng-container>
+<ng-template #tmplUploadFile>
+    <nz-upload nzType="drag" [nzMultiple]="true" (nzChange)="handleChange($event)" [nzBeforeUpload]="beforeUpload"
+        [(nzFileList)]="fileList" [nzAction]="urlBase" [nzShowUploadList]="showUploadList" [nzFileListRender]="tmplFileList">
+        <p class="ant-upload-drag-icon">
+            <span nz-icon nzType="inbox"></span>
+        </p>
+        <p class="ant-upload-text">Click hoặc kéo thả file vào vùng upload</p>
+        <p class="ant-upload-hint">
+            Hỗ trợ upload 1 file hoặc nhiều file
+        </p>
+    </nz-upload>
+</ng-template>
+
+<!-- <ng-template #percentage>
+    <span>{{progress}}</span>
+</ng-template> -->
+
+<ng-template #tmplFileList let-list>
+    <nz-list nzSize="small">
+        <nz-list-item *ngFor="let item of list">
+            <!-- {{item.firstName}} -->
+            <button nz-button nzType="default" (click)="downloadFile(item)">Tải xuống</button>
+            <span class="text-left">
+                {{item.name}}
+            </span>
+            <button nz-button nzType="default" (click)="removeFile(item)">Xóa</button>
+        </nz-list-item>
+
+    </nz-list>
+</ng-template>

@@ -1,0 +1,159 @@
+<!-- header -->
+<div
+  class="task-header p-2"
+  [formGroup]="formValidation"
+  [ngClass]="!isCollapsed ? 'task-header-toggle' : ''"
+>
+  <div class="d-flex flex-column header-test-fixed">
+    <div class="p-1 ">
+      <div class="d-flex flex-row">
+        <div class="col-md-6">
+          <div class="float-left d-flex flex-row">
+            <button nz-button nzType="primary" (click)="addTask()">
+              <span nz-icon nzType="plus"></span>
+              Thêm công việc
+            </button>
+            <button class="ml-2" nz-button (click)="test()">
+              <span nz-icon nzType="plus"></span>
+              Xuất báo cáo Task
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="float-right d-flex flex-row">
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menuTask">
+              <button nz-button nzType="default">
+                <span nz-icon nzType="check-circle" nzTheme="outline"> </span>
+                {{ filterName }}
+              </button>
+              <nz-dropdown-menu #menuTask="nzDropdownMenu">
+                <ul class="dropdown_menu" nz-menu>
+                  <li
+                    nz-menu-item
+                    (click)="selectedItemFilter(item)"
+                    *ngFor="let item of params.filters"
+                  >
+                    {{ item }}
+                  </li>
+                </ul>
+              </nz-dropdown-menu>
+            </a>
+
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menuSort">
+              <button nz-button nzType="default">
+                <span nz-icon nzType="sort-ascending" nzTheme="outline"></span
+                >{{ sortName }}
+              </button>
+              <nz-dropdown-menu #menuSort="nzDropdownMenu">
+                <ul class="dropdown_menu" nz-menu>
+                  <li
+                    nz-menu-item
+                    (click)="selectedItemSort(item)"
+                    *ngFor="let item of params.sorts"
+                  >
+                    {{ item }}
+                  </li>
+                </ul>
+              </nz-dropdown-menu>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-1">
+      <div class="table-responsive-custom-header">
+        <table class="table">
+          <thead>
+            <th class="text-center col-11">Tên</th>
+            <ng-template [ngIf]="!isCollapsed" [ngIfElse]="collapsedTemplate">
+              <th class="text-center col-3-1">Ngày kết thúc</th>
+            </ng-template>
+            <ng-template #collapsedTemplate>
+              <th class="text-center col-3-1">Ngày bắt đầu</th>
+              <th class="text-center col-3-1">Ngày kết thúc</th>
+              <th class="text-center col-4">Trạng thái</th>
+            </ng-template>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div class="p-2">
+
+    <div
+      formArrayName="sections"
+      cdkDropList
+      (cdkDropListDropped)="onDragDropSection($event)"
+    >
+      <div
+        *ngFor="let item of sections.controls; index as idx"
+        class="task-table-left"
+        cdkDrag
+        [cdkDragDisabled]="editIdx === idx"
+        cdkDragLockAxis="y"
+      >
+        <div [formGroupName]="idx">
+          <div class="app-task-row-table" style="position: relative;">
+            <app-task-row-table
+              [paramSearch]="params"
+              [sectionParams]="item.get('id')!.value"
+              [sectionId]="item.get('id')!.value"
+              [isAddRowEvent]="item.get('isAddRowEvent')!.value"
+              [isCollapsedFromParent]="isCollapsed"
+              [title]="item.get('name')!.value ? item.get('name')!.value : ''"
+              (sectionName)="addToSectionArr($event, idx)"
+              (isEditSection)="isEdit($event)"
+              [sectionIdx]="idx"
+              style="cursor: pointer;"
+            >
+            </app-task-row-table>
+
+
+          </div>
+
+          <br />
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <button nz-button (click)="addSection()">
+          <span nz-icon nzType="plus"></span>
+          Thêm Section
+        </button>
+        <input
+          id="input-add-section"
+          type="text"
+          nz-input
+          [hidden]="addSections !== 1"
+          (keyup.enter)="createSection()"
+          (blur)="createSection()"
+          class="ml-2"
+        />
+      </div>
+    </div>
+  </div>
+  <!-- end content -->
+</div>
+<!-- end header -->
+
+<!-- detail -->
+<div
+  class="task-detail p-2"
+  [ngClass]="!isCollapsed ? 'toggle-task-detail' : ''"
+>
+  <app-task-detail
+    (collapEvent)="collapseEvent($event)"
+    [isCollapsed]="isCollapsed"
+    class=""
+  ></app-task-detail>
+  <!-- <app-task-detail
+    (collapEvent)="collapseEvent($event)"
+
+    class=""
+  ></app-task-detail> -->
+</div>
+<!-- end content -->

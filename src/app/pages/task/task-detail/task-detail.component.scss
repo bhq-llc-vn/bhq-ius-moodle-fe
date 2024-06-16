@@ -1,0 +1,64 @@
+
+.task-detail-header {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  background: white;
+  box-shadow: 0 4px 6px -6px #222;
+}
+
+::ng-deep {
+  .dropdown_menu a > span > svg {
+    margin-bottom: 6px;
+  }
+}
+
+.task-detail-content {
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep {
+
+    .task-detail-subtask {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+
+    .task-detail-name {
+        font-weight: bold;
+        font-size: 2em;
+    }
+
+  }
+}
+
+.black {
+  color: black !important;
+}
+
+.white {
+  color: white !important;
+}
+
+.tag {
+  border: 1px solid transparent;
+  border-radius: 50px;
+  height: 25px;
+  width: 25px;
+  margin-left: 10px;
+  align-self: center;
+  cursor: pointer;
+  box-shadow: 0 1px 1px #0003, 0 1px 1px 1px #00000024, 0 1px 1px 1px #0000001f;
+}
+
+nz-badge {
+  margin-right: 2px;
+}
+
+.sub-task-items:hover {
+  background-color: #f9f8f8;
+}

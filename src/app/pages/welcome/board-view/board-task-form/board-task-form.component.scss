@@ -1,0 +1,37 @@
+:host ::ng-deep .ant-modal-body {
+  height: 500px;
+  overflow-y: scroll;
+}
+
+:host ::ng-deep .ant-tag svg {
+  margin-bottom: 5px;
+}
+
+.wrapper {
+  width: 900px;
+  border-radius: 3px;
+}
+
+.ant-modal-title {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.modal-content {
+  display: grid;
+  grid-template-rows: none;
+  border: none;
+}
+
+.invalid-data {
+  border: 1px solid red;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background-color: red;
+  border-radius: 50%;
+}
