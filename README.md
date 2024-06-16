@@ -1,1 +1,0 @@
-# bhq-ius-moodle-fe
