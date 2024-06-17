@@ -7,7 +7,7 @@ import { ShareService } from './_share/share.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'task-management';
+  title = 'bhq-ius-moodle';
 
   constructor() {
 

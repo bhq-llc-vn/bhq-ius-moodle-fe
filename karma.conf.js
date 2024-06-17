@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/task-management'),
+      dir: require('path').join(__dirname, './coverage/bhq-ius-moodle'),
       subdir: '.',
       reporters: [
         { type: 'html' },
