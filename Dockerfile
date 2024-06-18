@@ -1,5 +1,5 @@
 ## BUILD
-FROM node:18.20.2-alpine as build
+FROM node:16-alpine3.17 as build
 WORKDIR /app
 COPY package*.json /app/
 RUN npm install -g @angular/cli@14.2.10
