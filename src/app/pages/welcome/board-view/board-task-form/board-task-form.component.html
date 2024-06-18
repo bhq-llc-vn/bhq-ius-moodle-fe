@@ -122,7 +122,7 @@
             <nz-form-label [nzSpan]="3"> Upload file </nz-form-label>
             <nz-form-control [nzSpan]="21">
               <nz-upload
-              nzAction="http://10.2.6.142:8092/taskManagement/api/task/uploadFileExcel"
+              nzAction="http://10.2.6.142:8092/bhq-ius/api/task/uploadFileExcel"
                 [nzHeaders]="{ authorization: 'authorization-text' }"
                 nzFileType="image/png"
                 (nzChange)="handleChange($event)"
