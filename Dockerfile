@@ -3,7 +3,7 @@ FROM node:18.20.2-alpine as build
 WORKDIR /app
 COPY package*.json /app/
 RUN npm install -g @angular/cli@14.2.10
-RUN npm install
+# RUN npm install
 COPY ./ /app/
 RUN ng build --configuration=production
 
