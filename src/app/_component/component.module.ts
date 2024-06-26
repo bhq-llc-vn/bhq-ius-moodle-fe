@@ -5,13 +5,15 @@ import { NgZorroModule } from '../_theme/ng-zorro.module';
 import { InputFileComponent } from './input-file/input-file.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 
 @NgModule({
   declarations: [
     InputFileComponent,
     ProgressBarComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UploadFileComponent
   ],
   imports: [
     CommonModule,

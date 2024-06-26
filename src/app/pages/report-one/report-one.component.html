@@ -1,0 +1,85 @@
+<div class="member-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="tool" style="width: 100%; margin-top: 1.5em">
+          <nz-input-group class="search" [nzSuffix]="suffixIconSearch">
+            <input
+              id="search"
+              type="text"
+              nz-input
+              placeholder="Nhập từ tìm kiếm"
+              (keyup.enter)="search()"
+            />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+          <button nz-button (click)="onUpload()" class="ml-auto mr-2">
+            Upload File XML
+          </button>
+        </div>
+        <nz-table
+          class="table"
+          nzShowPagination="false"
+          [nzData]="listData"
+          style="width: 100%; margin-top: 1.5em"
+        >
+          <thead>
+            <tr>
+              <th nzAlign="center">
+                <label
+                  nz-checkbox
+                  [ngModel]="checkedBoxAll"
+                  (ngModelChange)="checkedAll($event)"
+                ></label>
+              </th>
+              <th nzAlign="center">STT</th>
+              <th nzAlign="center">Tên</th>
+              <th nzAlign="center">Email</th>
+              <th nzAlign="center">Số điện thoại</th>
+              <th nzAlign="center">Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listData; let idx = index">
+              <td nzAlign="center">
+                <label
+                  nz-checkbox
+                  [ngModel]="item.isChecked"
+                  (ngModelChange)="isChecked($event, idx)"
+                ></label>
+              </td>
+              <td nzAlign="center">
+                {{ idx + 1 }}
+              </td>
+              <td nzAlign="center">
+                {{ item.name }}
+              </td>
+              <td nzAlign="center">
+                {{ item.email }}
+              </td>
+              <td nzAlign="center">
+                {{ item.phone }}
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+        <div class="paging">
+          <nz-pagination
+            (nzPageIndexChange)="changePageNumber($event)"
+            (nzPageSizeChange)="changePageSize($event)"
+            [(nzPageIndex)]="pageNumber"
+            [nzTotal]="totalElements"
+            nzShowSizeChanger
+            [(nzPageSize)]="pageSize"
+            [nzShowTotal]="total"
+          >
+          </nz-pagination>
+          <ng-template #total let-total
+            >Tổng số: {{ totalElements }}</ng-template
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  

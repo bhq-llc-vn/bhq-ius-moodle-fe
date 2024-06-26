@@ -46,20 +46,19 @@ export class PagesComponent implements OnInit {
     this.username = (helper.decodeToken(token)) ? helper.decodeToken(token).sub : '';
   }
 
-  async ngOnInit() {
-    let res = await firstValueFrom(this.userService.getUserInfo(this.username));
-    if(res.message && res.message === ResponseStatusEnum.success) {
-        this.userInfo = res.data;
-        this.menuInfo = this.pageService.getMenu(res.data.menu, menuItem);
-        this.username = res.data.username;
-        this.permissions = res.data.permissions;
-    }
-    // this.storeDataService.menuInfoData.next(this.menuInfo);
-    // this.storeDataService.permissions.next(this.permissions);
-    this.storeDataService.permissionsData = this.permissions;
-    this.storeDataService.menuInfo = this.menuInfo;
-    console.log(this.userInfo);
-    console.log(this.storeDataService.menuInfo);
+  ngOnInit() {
+    // let res = await firstValueFrom(this.userService.getUserInfo(this.username));
+    // if(res.message && res.message === ResponseStatusEnum.success) {
+    //     this.userInfo = res.data;
+    //     this.menuInfo = this.pageService.getMenu(res.data.menu, menuItem);
+    //     this.username = res.data.username;
+    //     this.permissions = res.data.permissions;
+    // }
+    // this.storeDataService.permissionsData = this.permissions;
+    // this.storeDataService.menuInfo = this.menuInfo;
+    // console.log(this.userInfo);
+    // console.log(this.storeDataService.menuInfo);
+    this.menuInfo = menuItem;
 
   }
 
