@@ -6,6 +6,7 @@ import { InputFileComponent } from './input-file/input-file.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
+import { ConfirmFormComponent } from './confirm-form/confirm-form.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
     InputFileComponent,
     ProgressBarComponent,
     NotFoundComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    ConfirmFormComponent
   ],
   imports: [
     CommonModule,

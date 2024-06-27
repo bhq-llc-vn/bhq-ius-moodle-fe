@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { ConfirmFormComponent } from 'src/app/_component/confirm-form/confirm-form.component';
+import { UploadFileComponent } from 'src/app/_component/upload-file/upload-file.component';
 import { ReportOneData } from 'src/app/_core/api/report-one/report-one-data';
 
 @Component({
@@ -55,7 +57,7 @@ export class ReportOneComponent implements OnInit {
       this.txtSearch = `${this.FilterValue}.cn.${input.value},`;
       console.log(this.txtSearch);
     }
-    this.getMember();
+    this.getDriver();
   }
 
   getFilterValue(index: number) {
@@ -131,7 +133,7 @@ export class ReportOneComponent implements OnInit {
       .create({
         nzTitle: 'Upload File XML',
         nzClassName: 'modal-custom',
-        nzContent: MemberFormComponent,
+        nzContent: UploadFileComponent,
         nzWidth: 'modal-custom',
         nzCentered: true,
         nzMaskClosable: false,
@@ -158,9 +160,7 @@ export class ReportOneComponent implements OnInit {
   onSubmitDriver(data: number[]): void {
     this.modalService
       .create({
-        nzTitle: 'Cập nhật nhân viên',
-        nzClassName: 'modal-custom',
-        nzContent: MemberFormComponent,
+        nzContent: ConfirmFormComponent,
         nzWidth: 'modal-custom',
         nzCentered: true,
         nzMaskClosable: false,
@@ -187,9 +187,7 @@ export class ReportOneComponent implements OnInit {
   onSubmitCourse(data: number[]): void {
     this.modalService
       .create({
-        nzTitle: 'Cập nhật nhân viên',
-        nzClassName: 'modal-custom',
-        nzContent: MemberFormComponent,
+        nzContent: ConfirmFormComponent,
         nzWidth: 'modal-custom',
         nzCentered: true,
         nzMaskClosable: false,
