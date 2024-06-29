@@ -1,23 +1,17 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { TeamData } from 'src/app/_core/api/team/team-data';
-import { ModeModal } from 'src/app/_core/enum/modeModal';
-import { teamContent } from 'src/app/_core/model/team';
-import { DeleteComponent } from './delete/delete.component';
-import { DriverFormComponent } from './driver-form/driver-form.component';
 import { ConfirmFormComponent } from 'src/app/_component/confirm-form/confirm-form.component';
 import { ReportOneData } from 'src/app/_core/api/report-one/report-one-data';
-import { Driver } from 'src/app/_core/model/driver';
 import { SubmitFormComponent } from './submit-form/submit-form.component';
 import { ShareService } from 'src/app/_share/share.service';
 
 @Component({
-  selector: 'app-driver',
-  templateUrl: './driver.component.html',
-  styleUrls: ['./driver.component.scss']
+  selector: 'app-course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.scss']
 })
-export class DriverComponent implements OnInit {
+export class CourseComponent implements OnInit {
 
   constructor(
     private service: ReportOneData,
@@ -25,11 +19,11 @@ export class DriverComponent implements OnInit {
     private notifyService: NzNotificationService,
     private shareService: ShareService,
     private element: ElementRef
-  ) {}
+  ) { }
 
   public listData: any;
   public listId: number[] = [];
-  public searchField = ['Name', 'Email', 'Advanced Filter'];
+  public searchField = ['tenKhoaHoc', 'maKhoaHoc'];
 
   public pageNumber = 1;
   public pageSize = 10;
@@ -47,9 +41,12 @@ export class DriverComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.getDriver();
+    this.getCourse();
     console.log(this.listId);
-    this.isUploadFileSuccess();
+  }
+
+  isCollapsed() {
+    this.isCollapse = !this.isCollapse;
   }
 
   isUploadFileSuccess() {
@@ -58,14 +55,10 @@ export class DriverComponent implements OnInit {
         console.log(res);
         if(res) {
           this.txtSearch = "";
-          this.getDriver();
+          this.getCourse();
         }
       }
     })
-  }
-
-  isCollapsed() {
-    this.isCollapse = !this.isCollapse;
   }
 
   search() {
@@ -73,23 +66,14 @@ export class DriverComponent implements OnInit {
     if(input.value != null || input.value != "") {
       this.txtSearch = `username.cn.${input.value},`;
     }
-    this.getDriver();
+    this.getCourse();
   }
+
+  
 
   getFilterValue(index: number) {
     console.log(this.searchField[index]);
     this.FilterValue = this.searchField[index];
-  }
-
-
-  changePageSize(event: any) {
-    this.pageSize = event;
-    this.getDriver();
-  }
-
-  changePageNumber(event: any) {
-    this.pageNumber = event;
-    this.getDriver();
   }
 
   checkedAll(event: any) {
@@ -128,9 +112,19 @@ export class DriverComponent implements OnInit {
     }
   }
 
-  public getDriver() {
+  changePageSize(event: any) {
+    this.pageSize = event;
+    this.getCourse();
+  }
+
+  changePageNumber(event: any) {
+    this.pageNumber = event;
+    this.getCourse();
+  }
+
+  public getCourse() {
     this.service
-      .searchDriver(this.pageNumber, this.pageSize, this.txtSearch)
+      .searchCourse(this.pageNumber, this.pageSize, this.txtSearch)
       .subscribe({
         next: (res) => {
           console.log(res);
@@ -148,7 +142,6 @@ export class DriverComponent implements OnInit {
   onSubmit(): void {
     this.modalService
       .create({
-        nzTitle: 'Đẩy hồ sơ lên hệ thống',
         nzContent: SubmitFormComponent,
         nzWidth: 'modal-custom',
         nzCentered: true,
@@ -168,7 +161,7 @@ export class DriverComponent implements OnInit {
               this.modalOptions
             );
           }
-          this.getDriver();
+          this.getCourse();
         },
         error: (res) => {
           console.log(res);

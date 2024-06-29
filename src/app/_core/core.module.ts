@@ -40,6 +40,9 @@ import { UserService } from './api/user/user.service';
 import { ReportApi } from './api/report/report.api';
 import { ReportData } from './api/report/report-data';
 import { ReportService } from './api/report/report.service';
+import { ReportOneData } from './api/report-one/report-one-data';
+import { ReportOneService } from './api/report-one/report-one.service';
+import { ReportOneApi } from './api/report-one/report-one.api';
 
 const API = [
   TaskApi,
@@ -54,7 +57,8 @@ const API = [
   ProjectApi,
   TeamApi,
   UserApi,
-  ReportApi
+  ReportApi,
+  ReportOneApi
 ];
 
 const SERVICES = [
@@ -71,6 +75,7 @@ const SERVICES = [
   { provide: TeamData, useClass: TeamService },
   { provide: UserData, useClass: UserService },
   { provide: ReportData, useClass: ReportService },
+  { provide: ReportOneData, useClass: ReportOneService }
 ];
 
 @NgModule({

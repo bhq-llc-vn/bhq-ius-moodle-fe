@@ -2,19 +2,19 @@ import { HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { NotifyService } from 'src/app/_base/notify.service';
-import { UploadFileData } from 'src/app/_core/api/upload-file/upload-file-data';
+import { ReportOneData } from 'src/app/_core/api/report-one/report-one-data';
 import { ResponseStatusEnum } from 'src/app/_core/enum/response-status-enum';
 import { UploadFile } from 'src/app/_core/model/upload-file';
 import { ShareService } from 'src/app/_share/share.service';
-import { TaskUploadFileComponent } from 'src/app/pages/task/task-detail/task-upload-file/task-upload-file.component';
 
 @Component({
-  selector: 'app-upload-file',
-  templateUrl: './upload-file.component.html',
-  styleUrls: ['./upload-file.component.scss']
+  selector: 'app-upload-file-report-one',
+  templateUrl: './upload-file-report-one.component.html',
+  styleUrls: ['./upload-file-report-one.component.scss']
 })
-export class UploadFileComponent implements OnInit {
+export class UploadFileReportOneComponent implements OnInit {
 
   public file: any = {};
   public fileList: any[] = []; //
@@ -22,13 +22,18 @@ export class UploadFileComponent implements OnInit {
   public progress: number = 0;
   public formValidation!: FormGroup;
   public files: any[] = [];
+  public fileTypeSupport = 'xml';
 
   @Input() title: string = '';
   @Input() taskId: number = 0;
 
+  modalOptions: any = {
+    nzDuration: 2000,
+  };
+
   constructor(
-    private modelRef: NzModalRef<UploadFileComponent>,
-    private uploadService: UploadFileData,
+    private modelRef: NzModalRef<UploadFileReportOneComponent>,
+    private service: ReportOneData,
     private notifyService: NotifyService,
     private shareService: ShareService,
     private fb: FormBuilder,
@@ -40,7 +45,6 @@ export class UploadFileComponent implements OnInit {
 
   ngOnInit(): void {
     // this.isLoadingSpinner();
-    this.getFileNameInTask(this.taskId);
   }
 
   //event
@@ -63,26 +67,16 @@ export class UploadFileComponent implements OnInit {
 
   onDeleteEvent(event: any): void {
     if (event && event.message === ResponseStatusEnum.success) {
-        this.notifyService.success("Xóa thành công");
+      this.notifyService.success("Xóa thành công");
     }
     if (event && event.message === ResponseStatusEnum.error) {
       this.notifyService.error(event.message);
-  }
+    }
   }
 
   // end event
 
 
-  getFileNameInTask(id: number) {
-    this.uploadService.getFileInTask(id).subscribe({
-      next: (res) => {
-        console.log(res);
-        if (res.message === ResponseStatusEnum.success) {
-          this.files = res.data;
-        }
-      }
-    });
-  }
 
 
   save() {
@@ -92,7 +86,7 @@ export class UploadFileComponent implements OnInit {
       uploadFile.taskId = this.taskId;
       // uploadFile.name = file.name;
 
-      this.uploadService.uploadFileInTask(uploadFile, this.fileList).subscribe(
+      this.service.uploadFileXml(this.fileList[0]).subscribe(
         {
           next: (res) => {
             console.log(res);
@@ -105,8 +99,9 @@ export class UploadFileComponent implements OnInit {
             }
             if (res.message === ResponseStatusEnum.success) {
               this.notifyService.success("Upload file thành công");
+              this.shareService.isUploadingSuccess.next(true);
               setTimeout(() => {
-                this.close();
+                this.close()
               }, 1000);
             }
 
@@ -121,23 +116,28 @@ export class UploadFileComponent implements OnInit {
 
   };
 
+  handleChange(info: NzUploadChangeParam): void {
+    console.log(info);
+    let fileList = [...info.fileList];
 
-  deleteFile(item: any) {
-    let upload: UploadFile = {};
-    upload.taskId = this.taskId;
-    upload.name = item.name;
-    // upload.size = item.size;
-    this.uploadService.deleteFileInTask(upload).subscribe(
-      {
-        next: (res) => {
-          console.log(res);
-          if (res.message === ResponseStatusEnum.success) {
-            this.notifyService.success("Upload file thành công");
-          }
-        }
+    // 1. Limit the number of uploaded files
+    // Only to show one recent uploaded files, and old ones will be replaced by the new
+    fileList = fileList.slice(-1);
+
+    // 2. Read from response and show file link
+    fileList = fileList.map(file => {
+      if (file.response) {
+        // Component will show file.url as link
+        file.url = file.response.url;
       }
-    );
+      return file;
+    });
+    console.log(fileList)
+
+    this.fileList = fileList;
+
   }
+
 
 
   close() {

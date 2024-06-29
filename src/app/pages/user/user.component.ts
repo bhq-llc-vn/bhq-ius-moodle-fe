@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.getAllUser();
+    // this.getAllUser();
     console.log(this.listId);
   }
 
@@ -136,7 +136,7 @@ export class UserComponent implements OnInit {
       nzTitle: 'Xem chi tiết',
       nzClassName: 'modal-custom',
       nzContent: UserFormComponent,
-      nzWidth: '700px',
+      nzWidth: '900px',
       nzCentered: true,
       nzMaskClosable: false,
       nzComponentParams: {
@@ -153,7 +153,7 @@ export class UserComponent implements OnInit {
         nzTitle: 'Tạo mới người dùng',
         nzClassName: 'modal-custom',
         nzContent: UserFormComponent,
-        nzWidth: '700px',
+        nzWidth: '900px',
         nzCentered: true,
         nzMaskClosable: false,
         nzComponentParams: {
@@ -186,7 +186,7 @@ export class UserComponent implements OnInit {
         nzTitle: 'Chỉnh sửa người dùng',
         nzClassName: 'modal-custom',
         nzContent: UserFormComponent,
-        nzWidth: '700px',
+        nzWidth: '900px',
         nzCentered: true,
         nzMaskClosable: false,
         nzComponentParams: {

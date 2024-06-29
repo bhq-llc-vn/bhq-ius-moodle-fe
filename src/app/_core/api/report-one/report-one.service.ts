@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { memberContent } from '../../model/member';
 import { ReportOneData } from './report-one-data';
 import { ReportOneApi } from './report-one.api';
 

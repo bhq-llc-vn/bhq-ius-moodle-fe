@@ -24,7 +24,10 @@ const routes: Routes = [
         path: 'report-one',
         loadChildren: () => import('./report-one/report-one.module').then((m) => m.ReportOneModule),
       },
-     
+      {
+        path: 'user',
+        loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+      },
       {
         path: '**',
         redirectTo: 'home',

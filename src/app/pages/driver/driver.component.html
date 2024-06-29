@@ -3,73 +3,18 @@
     <div class="row">
       <div class="tool" style="width: 100%; margin-top: 1.5em">
         <nz-input-group class="search" [nzSuffix]="suffixIconSearch">
-          <input
-            id="search"
-            type="text"
-            nz-input
-            placeholder="Nhập từ tìm kiếm"
-            (keyup.enter)="search()"
-          />
+          <input id="search" type="text" nz-input placeholder="Nhập từ tìm kiếm" (keyup.enter)="search()" />
         </nz-input-group>
         <ng-template #suffixIconSearch>
           <span nz-icon nzType="search"></span>
         </ng-template>
-        <button nz-button (click)="onCreate()" class="ml-auto mr-2">
-          Thêm mới nhóm
+        <button nz-button (click)="onSubmit()" class="ml-auto mr-2">
+          Submit học viên
         </button>
-        <button nz-button nzDanger class="mr-2" (click)="onDeleteAll(listId)">
-          Xóa tất cả
-        </button>
-        <!-- <button
-          nz-button
-          nz-dropdown
-          nzTrigger="click"
-          [nzDropdownMenu]="menu"
-          class="d-flex align-items-center mr-2"
-        >
-          <i nz-icon nzType="sort-ascending" nzTheme="outline"></i>
-        </button>
-        <nz-dropdown-menu #menu="nzDropdownMenu">
-          <ul
-            nz-menu
-            nzSelectable
-            *ngFor="let item of searchField; let idx = index"
-          >
-            <li nz-menu-item (click)="getFilterValue(idx)">
-              {{ item }}
-            </li>
-          </ul>
-        </nz-dropdown-menu> -->
-        <button
-          nz-button
-          (click)="isCollapsed()"
-          class="d-flex align-items-center mr-2"
-        >
-          <i nz-icon nzType="filter" nzTheme="outline"></i>
-          <span>Bộ lọc</span>
-        </button>
-        <!-- <nz-dropdown-menu #menu="nzDropdownMenu">
-          <ul
-            nz-menu
-            nzSelectable
-            *ngFor="let item of searchField; let idx = index"
-          >
-            <li nz-menu-item (click)="getFilterValue(idx)">
-              {{ item }}
-            </li>
-          </ul>
-        </nz-dropdown-menu> -->
+
       </div>
-      <div class="date-picker-custom mt-3" [hidden]="!isCollapse">
-        <nz-date-picker [nzSize]="'default'" class="mr-2"></nz-date-picker>
-        <nz-date-picker [nzSize]="'default'"></nz-date-picker>
-      </div>
-      <nz-table
-        class="table"
-        nzShowPagination="false"
-        [nzData]="listData"
-        style="width: 100%; margin-top: 1.5em"
-      >
+
+      <nz-table class="table" nzShowPagination="false" [nzData]="listData" style="width: 100%; margin-top: 1.5em">
         <thead>
           <tr>
             <th nzAlign="center">
@@ -80,8 +25,13 @@
               ></label>
             </th>
             <th nzAlign="center">STT</th>
-            <th nzAlign="center">Tên Nhóm</th>
-            <th nzAlign="center">Hành động</th>
+            <th nzAlign="center">Mã đăng ký</th>
+            <th nzAlign="center">Họ và tên</th>
+            <th nzAlign="center">Số CMT</th>
+            <th nzAlign="center">Giới tính</th>
+            <th nzAlign="center">Nơi TT</th>
+            <th nzAlign="center">Nơi CT</th>
+            <th nzAlign="center">Trạng thái</th>
           </tr>
         </thead>
         <tbody>
@@ -97,59 +47,33 @@
               {{ idx + 1 }}
             </td>
             <td nzAlign="center">
-              {{ item.teamName }}
+              {{ item.maDK }}
             </td>
-            <td class="d-flex flex-row justify-content-center">
-              <!-- <button
-                nz-button
-                nzShape="circle"
-                class="d-flex align-items-center justify-content-center mr-1"
-                [routerLink]="['welcome', item.id]"
-              >
-                <i nz-icon nzType="link" nzTheme="outline"></i>
-              </button> -->
-              <button
-                nz-button
-                nzShape="circle"
-                class="d-flex align-items-center justify-content-center mr-1"
-                (click)="onView(item)"
-              >
-                <i nz-icon nzType="eye" nzTheme="outline"></i>
-              </button>
-              <button
-                nz-button
-                nzShape="circle"
-                class="d-flex align-items-center justify-content-center mr-1"
-                (click)="onUpdate(item)"
-              >
-                <i nz-icon nzType="edit" nzTheme="outline"></i>
-              </button>
-              <button
-                nz-button
-                nzShape="circle"
-                class="d-flex align-items-center justify-content-center mr-1"
-                (click)="onDelete(item.id)"
-              >
-                <i nz-icon nzType="delete" nzTheme="outline"></i>
-              </button>
+            <td nzAlign="center">
+              {{ item.hoVaTen }}
             </td>
+            <td nzAlign="center">
+              {{ item.soCMT }}
+            </td>
+            <td nzAlign="center">
+              {{ item.gioiTinh }}
+            </td>
+            <td nzAlign="center">
+              {{ item.noiCT }}
+            </td>
+            <td nzAlign="center">
+              {{ item.status }}
+            </td>
+
           </tr>
         </tbody>
       </nz-table>
       <div class="paging">
-        <nz-pagination
-          (nzPageIndexChange)="changePageNumber($event)"
-          (nzPageSizeChange)="changePageSize($event)"
-          [(nzPageIndex)]="pageNumber"
-          [nzTotal]="totalElements"
-          nzShowSizeChanger
-          [(nzPageSize)]="pageSize"
-          [nzShowTotal]="total"
-        >
+        <nz-pagination (nzPageIndexChange)="changePageNumber($event)" (nzPageSizeChange)="changePageSize($event)"
+          [(nzPageIndex)]="pageNumber" [nzTotal]="totalElements" nzShowSizeChanger [(nzPageSize)]="pageSize"
+          [nzShowTotal]="total">
         </nz-pagination>
-        <ng-template #total let-total
-          >Tổng số: {{ totalElements }}</ng-template
-        >
+        <ng-template #total let-total>Tổng số: {{ totalElements }}</ng-template>
       </div>
     </div>
   </div>

@@ -27,7 +27,7 @@ export class DriverFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private teamData: TeamData,
-    private modelRef: NzModalRef<TeamFormComponent>
+    private modelRef: NzModalRef<DriverFormComponent>
   ) {}
 
   get teamName() {

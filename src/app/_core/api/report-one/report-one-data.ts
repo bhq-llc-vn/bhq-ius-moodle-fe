@@ -1,5 +1,4 @@
 import { Observable } from "rxjs";
-import { memberContent } from "../../model/member";
 
 export abstract class ReportOneData {
   abstract searchDriver(pageNumber: number, pageSize: number, txtSearch?: string): Observable<any>;

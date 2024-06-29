@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ProjectData } from 'src/app/_core/api/project/project-data';
@@ -26,6 +26,9 @@ export class UserFormComponent implements OnInit {
   @Input() mode: string = '';
   @Input() id: number = 0;
 
+  passwordVisible = false;
+
+
   modalOptions: any = {
     nzDuration: 2000,
   };
@@ -44,27 +47,40 @@ export class UserFormComponent implements OnInit {
   }
 
   get fullName() {
-    return this.formValidation.get('username');
+    return this.formValidation.get('fullName');
   }
 
   get email() {
     return this.formValidation.get('email');
   }
 
+  get password() {
+    return this.formValidation.get('password');
+  }
+
   get phone() {
     return this.formValidation.get('phone');
   }
+
+  get checkPassword() {
+    return this.formValidation.get('checkPassword');
+  }
+
 
 
 
   ngOnInit(): void {
     this.formValidation = this.fb.group({
-      username: ['', []],
-      password: ['', []],
-      fullName: ['', []],
-      phone: ['', []],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      checkPassword: ['', [Validators.required, this.confirmationValidator]],
+      fullName: ['', [Validators.required]],
+      phone: ['', [
+        Validators.pattern('^[0-9]*$'),
+        Validators.minLength(9),
+        Validators.maxLength(11),
+      ],],
       email: ['', []],
-      lastLoginTime: ['', []],
     });
 
     if (this.mode != ModeModal.CREATE) {
@@ -74,6 +90,21 @@ export class UserFormComponent implements OnInit {
     }
 
   }
+
+  updateConfirmValidator(): void {
+    /** wait for refresh value */
+    Promise.resolve().then(() => this.formValidation.controls['checkPassword'].updateValueAndValidity());
+  }
+
+  confirmationValidator: ValidatorFn = (control: AbstractControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return { required: true };
+    } else if (control.value !== this.formValidation.controls['password'].value) {
+      return { confirm: true, error: true };
+    }
+    return {};
+  };
+
 
 
   changeChecked() {
@@ -143,7 +174,7 @@ export class UserFormComponent implements OnInit {
       default:
         break;
     }
-   
+
   }
 
   handleCancel(): void {

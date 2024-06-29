@@ -29,7 +29,7 @@ export const menuItem: MenuItem[] = [
         title: 'Báo cáo 1',
         code: 'reportOne',
         icon: '',
-        type: 'report',
+        type: 'file',
         theme: 'outline',
         path: 'report-one',
         class: '',
@@ -42,7 +42,7 @@ export const menuItem: MenuItem[] = [
         icon: '',
         type: 'usergroup-add',
         theme: 'outline',
-        path: 'setting',
+        path: 'user',
         class: '',
         children: [
 

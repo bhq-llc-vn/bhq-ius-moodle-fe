@@ -16,14 +16,10 @@ export class PermissionGuardService implements CanActivateChild {
   constructor(
     private storeDataService: StoreDataService, 
     private binarySearchService: BinarySearchService) {
-    // this.getMenuInfo();
+    this.getMenuInfo();
    
   }
 
-  // ngOnInit(): void {
-  //   console.log("onInit");
-  //   this.menuInfo = this.storeDataService.menuInfo;
-  // }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     console.log(childRoute);
@@ -45,22 +41,18 @@ export class PermissionGuardService implements CanActivateChild {
   }
 
  getMenuInfo() {
-  
-    // const result = await firstValueFrom(this.storeDataService.menuInfoData);
-    // if(result) {
-    //   this.menuInfo = result;
-    // }
-    // this.storeDataService.menuInfoData.subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //     if (res) {
-    //       this.menuInfo = res;
-    //     }
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   }
-    // })
+
+    this.storeDataService.menuInfoData.subscribe({
+      next: (res) => {
+        console.log(res);
+        if (res) {
+          this.menuInfo = res;
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
 
