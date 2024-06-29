@@ -1,0 +1,134 @@
+<div class="wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="tool" style="width: 100%; margin-top: 1.5em">
+          <button nz-button (click)="onCreate()"
+          >Thêm mới người dùng</button>
+          <button
+            nz-button
+            nzDanger
+            style="margin-left: 10px"
+            (click)="onDeleteAll(listId)"
+          >
+            Xóa tất cả
+          </button>      
+          <nz-input-group class="search" [nzSuffix]="suffixIconSearch">
+            <input
+              id="search"
+              type="text"
+              nz-input
+              placeholder="Nhập từ tìm kiếm"
+              (keyup.enter)="search()"
+            />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <i
+              style="cursor: pointer"
+              (click)="search()"
+              nz-icon
+              nzType="search"
+            ></i>
+          </ng-template>
+        </div>
+        <nz-table
+          class="table"
+          nzBordered
+          nzShowPagination="false"
+          [nzData]="listData"
+          style="width: 100%; margin-top: 1.5em"
+        >
+          <thead>
+            <tr>
+              <th nzAlign="center">
+                <label
+                  nz-checkbox
+                  [ngModel]="checkedBoxAll"
+                  (ngModelChange)="checkedAll($event)"
+                ></label>
+              </th>
+              <th nzAlign="center">STT</th>
+              <th nzAlign="center">Username</th>
+              <th nzAlign="center">Họ và tên</th>
+              <th nzAlign="center">Điện thoại</th>
+              <th nzAlign="center">Thời gian đăng nhập gần nhất</th>
+              <th nzAlign="center">Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of listData; let idx = index">
+              <tr>
+                <td nzAlign="center">
+                  <label
+                    nz-checkbox
+                    [ngModel]="item.isChecked"
+                    (ngModelChange)="isChecked($event, idx)"
+                  ></label>
+                </td>
+                <td nzAlign="center">
+                  {{ idx + 1 }}
+                </td>
+                <td nzAlign="center">
+                  {{item.username}}
+                </td>
+                <td nzAlign="center">
+                  {{item.fullName}}
+                </td>
+                <td nzAlign="center">
+                  {{item.phone}}
+                </td>
+                <td nzAlign="center">
+                  {{item.lastLoginTime | date : "dd/MM/yyyy HH:mm:ss"}}
+                </td>
+                <td class="d-flex flex-row justify-content-center">
+                  <button
+                    nz-button
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="Thông tin người dùng"
+                    class="d-flex align-items-center justify-content-center mr-1"
+                    (click)="onView(item)"
+                  >
+                    <i nz-icon nzType="eye" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="Chỉnh sửa người dùng"
+                    class="d-flex align-items-center justify-content-center mr-1"
+                    (click)="onUpdate(item)"
+                  >
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="Xóa người dùng"
+                    class="d-flex align-items-center justify-content-center mr-1"
+                    (click)="onDelete(item.id)"
+                  >
+                    <i nz-icon nzType="delete" nzTheme="outline"></i>
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+        <div class="paging">
+          <nz-pagination
+            (nzPageIndexChange)="changePageNumber($event)"
+            (nzPageSizeChange)="changePageSize($event)"
+            [(nzPageIndex)]="pageNumber"
+            [nzTotal]="totalElements"
+            nzShowSizeChanger
+            [(nzPageSize)]="pageSize"
+            [nzShowTotal]="total"
+          >
+          </nz-pagination>
+          <ng-template #total let-total>Tổng số: {{ totalElements }}</ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  

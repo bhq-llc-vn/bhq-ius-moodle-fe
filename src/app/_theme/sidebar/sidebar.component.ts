@@ -39,13 +39,10 @@ export class SidebarComponent implements OnInit, OnChanges {
 
   constructor(
     private elementRef: ElementRef,
-    private modalService: NzModalService,
-    private notifyService: NzNotificationService,
-    private router: Router,
     private binarySearch: BinarySearchService
   ) {
     // do something
-    this.menuInfo = [];
+    // this.menuInfo = [];
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -55,36 +52,38 @@ export class SidebarComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(this.menuInfo)
+  }
 
 
 
   subMenu(item?: any) {
     // debugger;
-    // this.binarySearch.binarySearchTreeArray(this.menuInfo, 'children', item.id);
-    // const result = this.binarySearch.result;
-    // let subMenu = this.elementRef.nativeElement.querySelector('.sub-menu');
-    // console.log(subMenu);
-    // if (subMenu.classList.contains('d-none')) {
-    //   subMenu.classList.remove('hide');
-    //   subMenu.classList.remove('d-none');
-    //   subMenu.classList.add('show');
-    //   subMenu.classList.add('d-block');
-    //   result.isOpen = !result.isOpen;
-    //   console.log(result);
-    //   // this.isOpen = !this.isOpen;
-    // } else if (subMenu.classList.contains('d-block')) {
-    //   subMenu.classList.remove('show');
-    //   subMenu.classList.remove('d-block');
-    //   subMenu.classList.add('hide');
-    //   result.isOpen = !result.isOpen;
-    //   console.log(result);
-    //   // this.isOpen = !this.isOpen;
-    //   setTimeout(() => {
-    //     return subMenu.classList.add('d-none');
-    //   }, 300);
-    // }
+    this.binarySearch.binarySearchTreeArray(this.menuInfo, 'children', item.id);
+    const result = this.binarySearch.result;
+    let subMenu = this.elementRef.nativeElement.querySelector('.sub-menu');
+    console.log(subMenu);
+    if (subMenu.classList.contains('d-none')) {
+      subMenu.classList.remove('hide');
+      subMenu.classList.remove('d-none');
+      subMenu.classList.add('show');
+      subMenu.classList.add('d-block');
+      result.isOpen = !result.isOpen;
+      console.log(result);
+      // this.isOpen = !this.isOpen;
+    } else if (subMenu.classList.contains('d-block')) {
+      subMenu.classList.remove('show');
+      subMenu.classList.remove('d-block');
+      subMenu.classList.add('hide');
+      result.isOpen = !result.isOpen;
+      console.log(result);
+      // this.isOpen = !this.isOpen;
+      setTimeout(() => {
+        return subMenu.classList.add('d-none');
+      }, 300);
+    }
   }
 
-  
+
 }

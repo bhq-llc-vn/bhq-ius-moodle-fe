@@ -7,7 +7,8 @@ export class PageMenuService {
   constructor() { }
 
   getMenu(items: any[], menu: any[]): any[] {
-    menu = menu.filter(item => items.includes(item.code.toUpperCase()));
+    // debugger;
+    menu = menu.filter(item => items.includes(item.code));
     menu.forEach((v, k) => {
       if (v.children && v.children.length > 0) {
         v.isOpen = false;

@@ -14,7 +14,7 @@ export class AuthenticationService {
   }
 
   get loginUrl() {
-    return environment.gatewayUrl;
+    return environment.apiUrl;
   }
 
   login(formData: any): Observable<any> {

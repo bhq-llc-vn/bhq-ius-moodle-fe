@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ShareService {
   public isCollapsed: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    true
+    false
   );
 
   constructor(private router: Router) {

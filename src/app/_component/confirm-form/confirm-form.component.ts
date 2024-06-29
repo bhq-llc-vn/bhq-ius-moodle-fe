@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-confirm-form',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmFormComponent implements OnInit {
 
-  constructor() { }
+  @Input() title: string = '';
+  @Input() data: string = '';
+
+  isVisible = false;
+  isConfirmLoading = false;
+
+  constructor(private modalRef: NzModalRef<ConfirmFormComponent>) {}
+
 
   ngOnInit(): void {
+    this.data = 'Bạn có chắc muốn xóa ????';
+  }
+
+  handleOk(): void {
+    this.isConfirmLoading = true;
+    this.modalRef.close(true);
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+    this.modalRef.close();
   }
 
 }

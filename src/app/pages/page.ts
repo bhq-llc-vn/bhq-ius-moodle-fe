@@ -10,6 +10,8 @@ export interface MenuItem {
     children: MenuItem[];
 }
 
+export const menuCode = ['reportOne', 'user']
+
 export const menuItem: MenuItem[] = [
     {
         id: 1,
@@ -35,58 +37,14 @@ export const menuItem: MenuItem[] = [
     },
     {
         id: 3,
-        title: 'Thiết lập',
-        code: 'setting',
+        title: 'Quản lý người dùng',
+        code: 'user',
         icon: '',
-        type: 'setting',
+        type: 'usergroup-add',
         theme: 'outline',
         path: 'setting',
         class: '',
         children: [
-            {
-                id: 31,
-                title: 'Nhân viên',
-                code: 'member_setting',
-                icon: '',
-                type: 'usergroup-add',
-                theme: 'outline',
-                path: 'member',
-                class: '',
-                children: [],
-            },
-            {
-                id: 32,
-                title: 'Nhóm',
-                code: 'team_setting',
-                icon: '',
-                type: 'usergroup-add',
-                theme: 'outline',
-                path: 'team',
-                class: '',
-                children: [],
-            },
-            {
-                id: 33,
-                title: 'Nhóm quyền',
-                code: 'role_setting',
-                icon: '',
-                type: 'key',
-                theme: 'outline',
-                path: 'roles-app',
-                class: '',
-                children: [],
-            },
-            {
-                id: 34,
-                title: 'Quyền',
-                code: 'permission_setting',
-                icon: '',
-                type: 'key',
-                theme: 'outline',
-                path: 'permission',
-                class: '',
-                children: [],
-            }
 
         ],
     },

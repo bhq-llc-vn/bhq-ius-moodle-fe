@@ -123,6 +123,14 @@ export enum EnumType {
   String = 'string'
 }
 
+// modal mode
+export enum ModeModal {
+  CREATE = 'create',
+  UPDATE = 'update',
+  VIEW = 'view',
+}
+
+
 // end utils enum
 
 

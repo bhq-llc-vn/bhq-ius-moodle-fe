@@ -12,17 +12,17 @@
         <a class="nav-link" routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><i
             nz-icon nzType="home" nzTheme="outline"></i><span class="ml-2">Trang chủ</span>
         </a>
-        <a class="nav-link" routerLink="report-one" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }"><i
+        <!-- <a class="nav-link" routerLink="report-one" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }"><i
             nz-icon nzType="home" nzTheme="outline"></i><span class="ml-2">Báo cáo 1</span>
-        </a>
+        </a> -->
       </li>
       <!-- end default -->
-      <!-- <ng-container [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ data: menuInfo }">
+      <ng-container [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ data: menuInfo }">
 
-      </ng-container> -->
+      </ng-container>
 
     </ul>
-    <!-- <ng-template #treeNode let-data="data">
+    <ng-template #treeNode let-data="data">
       <li class="nav-item" *ngFor="let item of data">
         <ng-container *ngIf="item.children && item.children.length == 0 else tmpSubMenu">
           <a class="nav-link" [routerLink]="item.path" routerLinkActive="active"
@@ -45,7 +45,7 @@
           </ng-container>
         </ng-template>
       </li>
-    </ng-template> -->
+    </ng-template>
 
   </div>
 </div>

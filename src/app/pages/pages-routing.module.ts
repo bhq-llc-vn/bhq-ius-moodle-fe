@@ -20,55 +20,11 @@ const routes: Routes = [
         path: 'welcome',
         loadChildren: () => import('./welcome/welcome.module').then((m) => m.WelcomeModule),
       },
-      // {
-      //   path: 'project',
-      //   loadChildren: () =>
-      //     import('./project/project.module').then((m) => m.ProjectModule),
-      // },
-      // {
-      //   path: 'task',
-      //   loadChildren: () => import('./task/task.module').then((m) => m.TaskModule),
-      // },
-      // {
-      //   path: 'permission',
-      //   loadChildren: () =>
-      //     import('./permission/permission.module').then((m) => m.PermissionModule),
-      // },
-      // {
-      //   path: 'member',
-      //   loadChildren: () =>
-      //     import('./member/member.module').then((m) => m.MemberModule),
-      // },
-      // {
-      //   path: 'team',
-      //   loadChildren: () =>
-      //     import('./team/team.module').then((m) => m.TeamModule),
-      // },
-      // {
-      //   path: 'roles-app',
-      //   loadChildren: () =>
-      //     import('./role/role-application/role-application.module').then(
-      //       (m) => m.RoleApplicationModule
-      //     ),
-      // },
-      // {
-      //   path: 'user-profile',
-      //   loadChildren: () =>
-      //     import('./user/profile/profile.module').then(
-      //       (m) => m.ProfileModule
-      //     ),
-      // },
-      // {
-      //   path: 'user-setting',
-      //   loadChildren: () =>
-      //     import('./user/setting/setting.module').then(
-      //       (m) => m.SettingModule
-      //     ),
-      // },
-      // {
-      //   path: 'report',
-      //   loadChildren: () => import('./report/report.module').then((m) => m.ReportModule),
-      // },
+      {
+        path: 'report-one',
+        loadChildren: () => import('./report-one/report-one.module').then((m) => m.ReportOneModule),
+      },
+     
       {
         path: '**',
         redirectTo: 'home',
