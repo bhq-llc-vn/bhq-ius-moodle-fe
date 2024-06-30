@@ -48,7 +48,7 @@ export class PagesComponent implements OnInit {
 
   ngOnInit() {
     this.menuInfo = this.pageService.getMenu(menuCode, menuItem);
-    this.storeDataService.menuInfo = this.menuInfo;
+    this.storeDataService.menuInfoData.next(this.menuInfo);
     console.log(this.menuInfo);
   }
 

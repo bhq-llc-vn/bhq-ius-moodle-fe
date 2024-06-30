@@ -24,7 +24,6 @@ export class JwtInterceptorService implements HttpInterceptor {
       });
 
     };
-    // return next.handle(req);
     return next.handle(req)
       .pipe(
         map((res: any) => {
@@ -32,34 +31,12 @@ export class JwtInterceptorService implements HttpInterceptor {
         }),
         catchError((error: HttpErrorResponse) => {
           console.log(error);
-          // console.log(error.message);
-          // if (error.error instanceof ErrorEvent) {
-              if(error.status === 401) {
-                if(this.authService.checkTokenExpired(token)) {
-                  let uuid = this.authService.getUUID();
-                  if (uuid) { 
-                    this.authenticationService.refreshToken(uuid).pipe(take(1)).subscribe({
-                      next: (res) => {
-                        if (res && res.accessToken) {
-                          console.log(res);
-                          localStorage.setItem('access_token', res.accessToken);
-                        }
-                      },
-                      error: (error) => {
-                        console.log(error);
-                        // nếu trả về 401 từ refreshToken => refreshToken hết hạn => redirect sang login
-                        this.router.navigate(['auth/login']);
-                      }
-                    });
-                  } else {
-                    this.router.navigate(['auth/login']);
-                  }
-                } 
-              // }
+          if (error.status === 401) {
+            this.router.navigate(['auth/login']);
           }
           return throwError(() => error);
         })
-       
+
       )
       ;
   }

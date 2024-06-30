@@ -14,20 +14,20 @@ export class AuthenticationService {
   }
 
   get loginUrl() {
-    return environment.apiUrl;
+    return environment.apiPublicUrl;
   }
 
   login(formData: any): Observable<any> {
     return this.http.post(`${this.loginUrl}/auth/login`, formData);
   }
 
-  refreshToken(uuid: string): Observable<any> {
-    return this.http.get(`${this.loginUrl}/auth/refreshTokenClient/` + uuid);
-  }
+  // refreshToken(uuid: string): Observable<any> {
+  //   return this.http.get(`${this.loginUrl}/auth/refreshTokenClient/` + uuid);
+  // }
 
-  getUser(id: string): Observable<any> {
-    return this.http.get(`${this.loginUrl}/user`);
-  }
+  // getUser(id: string): Observable<any> {
+  //   return this.http.get(`${this.loginUrl}/user`);
+  // }
 
 
 

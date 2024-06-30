@@ -6,14 +6,14 @@ export interface Driver {
 }
 
 export interface pagingData {
-  content: [driverContent];
+  content: [DriverModel];
   pageable: pageable;
   totalElements: number;
   totalPages?: number;
   size?: number;
 }
 
-export class driverContent extends BaseEntity {
+export class DriverModel extends BaseEntity {
   id: number;
   uuid: string;
   soTT: string;
@@ -37,6 +37,10 @@ export class driverContent extends BaseEntity {
   hoVaTenIn: string;
   soCMTCu: string;
   isChecked: Boolean;
+  status: string;
+  state: string;
+  error: string;
+  note: string;
 
   constructor() {
     super();
@@ -63,6 +67,10 @@ export class driverContent extends BaseEntity {
     this.hoVaTenIn = '';
     this.soCMTCu = '';
     this.isChecked = false;
+    this.status = '';
+    this.note = '';
+    this.state = '';
+    this.error = ';'
   }
 }
 

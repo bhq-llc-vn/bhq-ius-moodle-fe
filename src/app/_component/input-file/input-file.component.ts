@@ -40,7 +40,7 @@ export class InputFileComponent implements OnInit, AfterViewInit, OnChanges, Con
 
   @Input() fileListInput: any[] = []
   @Input() fileName: string[] = [];
-  @Input() fileType: string | undefined = '.doc,.docx,.xls,.xlsx,.pdf,.png,.jpg,.txt,.zip,.rar,.csv' // default
+  @Input() fileType: string | undefined = '.doc,.docx,.xls,.xlsx,.pdf,.png,.jpg,.txt,.zip,.rar,.csv,.xml' // default
   @Input() isShowLoadList: boolean = true;
   @Input() urlBase: string | undefined;
   @Input() isDialog: boolean = false;

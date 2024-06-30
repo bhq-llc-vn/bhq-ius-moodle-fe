@@ -22,6 +22,8 @@ export class ShareService {
   public isSortTask: Subject<any> = new Subject<any>();
   public isLoadingModal: Subject<boolean> = new Subject<boolean>(); // dung cho spinner tại modal
   public isUploadingSuccess: Subject<boolean> = new Subject<boolean>();
+  public isTabCourse: Subject<boolean> = new Subject<boolean>();
+  public isTabDriver: Subject<boolean> = new Subject<boolean>();
   // end events
 
   //store data

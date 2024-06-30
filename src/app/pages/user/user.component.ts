@@ -53,14 +53,16 @@ export class UserComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // this.getAllUser();
+    this.getAllUser();
     console.log(this.listId);
   }
 
 
   search() {
     const input = this.element.nativeElement.querySelector('#search');
-    this.txtSearch += `username.cn.${input.value},`;
+    if(input.value != '' || input.value != 'undefined') {
+      this.txtSearch += `username.cn.${input.value},`;
+    }
     this.getAllUser();
   }
 
@@ -167,7 +169,7 @@ export class UserComponent implements OnInit {
           if (res) {
             this.notifyService.success(
               'Thành công',
-              'Chỉnh sửa người dùng',
+              'Tạo mới người dùng',
               this.modalOptions
             );
           }

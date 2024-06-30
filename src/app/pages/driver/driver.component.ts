@@ -50,6 +50,7 @@ export class DriverComponent implements OnInit {
     this.getDriver();
     console.log(this.listId);
     this.isUploadFileSuccess();
+    this.isLoadingData();
   }
 
   isUploadFileSuccess() {
@@ -60,6 +61,22 @@ export class DriverComponent implements OnInit {
           this.txtSearch = "";
           this.getDriver();
         }
+      }
+    })
+  }
+
+  isLoadingData() {
+    this.shareService.isTabDriver.subscribe({
+      next: (res) => {
+        console.log(res);
+        if(res) {
+          this.txtSearch = "";
+          this.getDriver();
+        }
+      },
+      error: (err) => {},
+      complete: () => {
+
       }
     })
   }

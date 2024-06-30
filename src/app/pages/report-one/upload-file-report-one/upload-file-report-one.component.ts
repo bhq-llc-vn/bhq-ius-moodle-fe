@@ -8,6 +8,7 @@ import { ReportOneData } from 'src/app/_core/api/report-one/report-one-data';
 import { ResponseStatusEnum } from 'src/app/_core/enum/response-status-enum';
 import { UploadFile } from 'src/app/_core/model/upload-file';
 import { ShareService } from 'src/app/_share/share.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-upload-file-report-one',
@@ -22,7 +23,8 @@ export class UploadFileReportOneComponent implements OnInit {
   public progress: number = 0;
   public formValidation!: FormGroup;
   public files: any[] = [];
-  public fileTypeSupport = 'xml';
+  public fileTypeSupport = '.XML';
+  public urlUpload = environment.apiUrl + 'report-one/upload-xml';
 
   @Input() title: string = '';
   @Input() taskId: number = 0;
@@ -41,6 +43,7 @@ export class UploadFileReportOneComponent implements OnInit {
     this.formValidation = this.fb.group({
       isLoading: [false, []]
     })
+    
   }
 
   ngOnInit(): void {
@@ -82,11 +85,12 @@ export class UploadFileReportOneComponent implements OnInit {
   save() {
     // this.upLoading = true;
     if (this.fileList && this.fileList.length > 0) {
-      let uploadFile: UploadFile = {};
-      uploadFile.taskId = this.taskId;
+      // let uploadFile: UploadFile = {};
+      // uploadFile.taskId = this.taskId;
       // uploadFile.name = file.name;
-
-      this.service.uploadFileXml(this.fileList[0]).subscribe(
+      this.fileList[0].originFileObj
+      this.service.uploadFileXml(this.fileList[0]
+      ).subscribe(
         {
           next: (res) => {
             console.log(res);
@@ -118,29 +122,36 @@ export class UploadFileReportOneComponent implements OnInit {
 
   handleChange(info: NzUploadChangeParam): void {
     console.log(info);
-    let fileList = [...info.fileList];
+    // if (info.type?.toLocaleLowerCase().includes(this.fileTypeSupport.toLocaleLowerCase())) { 
+    //     this.notifyService.error("Định dạng file không đúng");
+    //     this.fileList = [];
+    // } else 
+    // {
+      let fileList = [...info.fileList];
 
-    // 1. Limit the number of uploaded files
-    // Only to show one recent uploaded files, and old ones will be replaced by the new
-    fileList = fileList.slice(-1);
+      // 1. Limit the number of uploaded files
+      // Only to show one recent uploaded files, and old ones will be replaced by the new
+      fileList = fileList.slice(-1);
 
-    // 2. Read from response and show file link
-    fileList = fileList.map(file => {
-      if (file.response) {
-        // Component will show file.url as link
-        file.url = file.response.url;
-      }
-      return file;
-    });
-    console.log(fileList)
+      // 2. Read from response and show file link
+      fileList = fileList.map(file => {
+        if (file.response) {
+          // Component will show file.url as link
+          file.url = file.response.url;
+        }
+        return file;
+      });
+      console.log(fileList)
 
-    this.fileList = fileList;
+      this.fileList = fileList;
+      // }
 
+
+    }
+
+
+
+    close() {
+      this.modelRef.close();
+    }
   }
-
-
-
-  close() {
-    this.modelRef.close();
-  }
-}

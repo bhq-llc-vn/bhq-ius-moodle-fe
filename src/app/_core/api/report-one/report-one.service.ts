@@ -25,7 +25,7 @@ export class ReportOneService implements ReportOneData {
   }
 
   uploadFileXml(file: File): Observable<any> {
-    return this.uploadFileXml(file);
+    return this.api.uploadFileXml(file);
   }
 
 }

@@ -7,10 +7,10 @@
         </button>
       </div>
       <nz-tabset [nzSize]="'large'">
-        <nz-tab [nzTitle]="'HỌC VIÊN '">
+        <nz-tab [nzTitle]="'HỌC VIÊN '" (nzSelect)="emitEventLoadDataDriver()">
            <app-driver></app-driver>
         </nz-tab>
-        <nz-tab [nzTitle]="'KHÓA HỌC '">
+        <nz-tab [nzTitle]="'KHÓA HỌC '" (nzSelect)="emitEventLoadDataCourse()">
            <app-course></app-course>
         </nz-tab>
       </nz-tabset>

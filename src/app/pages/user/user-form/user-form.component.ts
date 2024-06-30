@@ -71,6 +71,7 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formValidation = this.fb.group({
+      id:['',[]],
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
       checkPassword: ['', [Validators.required, this.confirmationValidator]],
@@ -117,11 +118,12 @@ export class UserFormComponent implements OnInit {
         console.log(res);
         this.formValidation.setValue({
           id: res.data.id,
-          fullNname: res.data.fullName,
+          fullName: res.data.fullName,
+          password: res.data.password,
+          checkPassword: res.data.password,
           email: res.data.email,
           phone: res.data.phone,
           username: res.data.username,
-          lastLoginTime: res.data.lastLoginTime,
         });
       },
     });

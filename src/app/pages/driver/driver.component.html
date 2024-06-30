@@ -32,6 +32,7 @@
             <th nzAlign="center">Nơi TT</th>
             <th nzAlign="center">Nơi CT</th>
             <th nzAlign="center">Trạng thái</th>
+            <th nzAlign="center">Ghi chú</th>
           </tr>
         </thead>
         <tbody>
@@ -59,10 +60,16 @@
               {{ item.gioiTinh }}
             </td>
             <td nzAlign="center">
+              {{ item.noiTT }}
+            </td>
+            <td nzAlign="center">
               {{ item.noiCT }}
             </td>
             <td nzAlign="center">
-              {{ item.status }}
+              {{ item.state }}
+            </td>
+            <td nzAlign="center">
+              {{ item.error }}
             </td>
 
           </tr>

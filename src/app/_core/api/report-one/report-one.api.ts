@@ -6,9 +6,9 @@ import { HttpService } from 'src/app/_base/http.service';
 @Injectable()
 export class ReportOneApi {
 
-  private readonly apiDriverUrl: string = '/driver';
-  private readonly apiCourseUrl: string = '/course';
-  private readonly apiReportOneUrl: string = '/report-one';
+  private readonly apiDriverUrl: string = 'driver';
+  private readonly apiCourseUrl: string = 'course';
+  private readonly apiReportOneUrl: string = 'report-one';
 
   constructor(private http: HttpService) { }
 
@@ -35,9 +35,28 @@ export class ReportOneApi {
   }
 
   uploadFileXml(file: File): Observable<any> {
+    console.log(file);
+    const blob: Blob = new Blob([file])
     const formData = new FormData();
-    formData.append('fileName', file);
-    return this.http.post(this.apiReportOneUrl + '/upload-xml', formData);
+    formData.append("file", blob, file.name);
+
+    const headers = {
+      // 'Content-Type': 'application/json',
+    }
+    const options = {
+      // formData: formData,
+      // headers: headers,
+      reportProgress: true
+    }
+    // Display the key/value pairs
+    formData.forEach((key, value) => {
+      console.log(key);
+      console.log(value);
+    })
+    console.log(formData);
+    console.log(formData.getAll('multipartFile'));
+
+    return this.http.post(this.apiReportOneUrl + '/upload-xml', formData, options);
   }
 
 }

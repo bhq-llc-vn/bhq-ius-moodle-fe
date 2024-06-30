@@ -43,6 +43,8 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
     this.getCourse();
     console.log(this.listId);
+    this.isUploadFileSuccess();
+    this.isLoadingData();
   }
 
   isCollapsed() {
@@ -60,6 +62,23 @@ export class CourseComponent implements OnInit {
       }
     })
   }
+
+  isLoadingData() {
+    this.shareService.isTabCourse.subscribe({
+      next: (res) => {
+        console.log(res);
+        if(res) {
+          this.txtSearch = "";
+          this.getCourse();
+        }
+      },
+      error: (err) => {},
+      complete: () => {
+
+      }
+    })
+  }
+
 
   search() {
     const input = this.element.nativeElement.querySelector('#search');

@@ -17,11 +17,11 @@ export class SubmitFormComponent implements OnInit {
   isConfirmLoading = false;
 
   constructor(private modalRef: NzModalRef<SubmitFormComponent>,
-            private service: ReportOneData
-  ) {}
+    private service: ReportOneData
+  ) { }
 
   buildMessage() {
-    if(this.listId.length > 0) {
+    if (this.listId.length > 0) {
       this.data = 'Bạn có chắc muốn đẩy NHỮNG BỘ HỒ SƠ này không ?'
     } else {
       this.data = 'Bạn có chắc muốn đẩy TOÀN BỘ HỒ SƠ không ?'
@@ -37,9 +37,9 @@ export class SubmitFormComponent implements OnInit {
     this.service.submitDriver(this.listId).subscribe(res => {
       if (res.status == 200) {
         this.isConfirmLoading = false;
+        this.modalRef.close(true);
       }
     })
-    this.modalRef.close(true);
   }
 
   handleCancel(): void {

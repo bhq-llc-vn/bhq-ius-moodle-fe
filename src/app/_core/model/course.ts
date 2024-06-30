@@ -36,6 +36,8 @@ export class courseContent extends BaseEntity {
   ngayQDKG: Date;
   ngaySatHach: Date;
   thoiGianDT: string;
+  state: string;
+  error: string;
   isChecked: Boolean;
 
   constructor() {
@@ -64,6 +66,8 @@ export class courseContent extends BaseEntity {
     this.ngaySatHach = new Date();
     this.thoiGianDT = '';
     this.isChecked = false;
+    this.state = '';
+    this.error = ';'
   }
 }
 

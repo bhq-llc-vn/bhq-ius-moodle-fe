@@ -20,7 +20,7 @@
     </button>
 </div> -->
 <div class="modal-content p-2">
-    <nz-upload [nzFileList]="fileList" [nzFileType]="fileTypeSupport" nzType="drag" [nzMultiple]="true" (nzChange)="handleChange($event)">
+    <!-- <nz-upload [nzFileList]="fileList" [nzAction]="urlUpload" [nzAccept]="fileTypeSupport" nzType="drag" [nzMultiple]="true" (nzChange)="handleChange($event)">
         <p class="ant-upload-drag-icon">
             <span nz-icon nzType="inbox"></span>
         </p>
@@ -28,7 +28,8 @@
         <p class="ant-upload-hint">
             Hỗ trợ upload 1 file với định dạng XML
         </p>
-    </nz-upload>
+    </nz-upload> -->
+    <app-input-file [isDialog]="true" [fileListInput]="files" (onChange)="onChangeEventUploadFile($event)" (onDelete)="onDeleteEvent($event)" ></app-input-file>
 </div>
 <div class="modal-footer-custom p-2">
     <button nz-button class="mr-2" [nzLoading]="upLoading" nzType="primary" (click)="save()">

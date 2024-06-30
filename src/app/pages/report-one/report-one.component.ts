@@ -5,6 +5,7 @@ import { ConfirmFormComponent } from 'src/app/_component/confirm-form/confirm-fo
 import { UploadFileComponent } from 'src/app/_component/upload-file/upload-file.component';
 import { ReportOneData } from 'src/app/_core/api/report-one/report-one-data';
 import { UploadFileReportOneComponent } from './upload-file-report-one/upload-file-report-one.component';
+import { ShareService } from 'src/app/_share/share.service';
 
 @Component({
   selector: 'app-report-one',
@@ -17,6 +18,7 @@ export class ReportOneComponent implements OnInit {
     private reportOneDate: ReportOneData,
     private modalService: NzModalService,
     private notifyService: NzNotificationService,
+    private shareService: ShareService,
     private element: ElementRef,
   ) {}
 
@@ -28,7 +30,13 @@ export class ReportOneComponent implements OnInit {
     nzDuration: 2000,
   };
 
-  
+  emitEventLoadDataCourse() {
+    this.shareService.isTabCourse.next(true);
+  }
+
+  emitEventLoadDataDriver() {
+    this.shareService.isTabDriver.next(true);
+  }
 
   onUpload(): void {
     this.modalService

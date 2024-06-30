@@ -37,9 +37,10 @@ export class SubmitFormComponent implements OnInit {
     this.service.submitDriver(this.listId).subscribe(res => {
       if (res.status == 200) {
         this.isConfirmLoading = false;
+        this.modalRef.close(true);
       }
     })
-    this.modalRef.close(true);
+   
   }
 
   handleCancel(): void {

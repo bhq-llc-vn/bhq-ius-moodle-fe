@@ -30,6 +30,8 @@
                         <th nzAlign="center">Số học sinh</th>
                         <th nzAlign="center">Ngày khai giảng</th>
                         <th nzAlign="center">Ngày bế giảng</th>
+                        <th nzAlign="center">Trạng thái</th>
+                        <th nzAlign="center">Ghi chú</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,6 +69,12 @@
                         </td>
                         <td nzAlign="center">
                             {{ item.ngayBeGiang | date: 'dd/MM/yyyy' }}
+                        </td>
+                        <td nzAlign="center">
+                            {{ item.state }}
+                        </td>
+                        <td nzAlign="center">
+                            {{ item.error }}
                         </td>
 
                     </tr>
