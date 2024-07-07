@@ -4,7 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { firstValueFrom } from 'rxjs';
 import { ResponseStatusEnum } from '../_core/enum/response-status-enum';
 import { PageMenuService } from './page-menu.service';
-import { menuCode, menuItem } from './page';
+import { menuCodeUser, menuCodeAdmin, menuItem } from './page';
 import { StoreDataService } from '../_base/store-data.service';
 import { ShareService } from '../_share/share.service';
 
@@ -47,7 +47,11 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.menuInfo = this.pageService.getMenu(menuCode, menuItem);
+    if(this.username == 'adminbhq') {
+      this.menuInfo = this.pageService.getMenu(menuCodeAdmin, menuItem);
+    } else {
+      this.menuInfo = this.pageService.getMenu(menuCodeUser, menuItem);
+    }
     this.storeDataService.menuInfoData.next(this.menuInfo);
     console.log(this.menuInfo);
   }

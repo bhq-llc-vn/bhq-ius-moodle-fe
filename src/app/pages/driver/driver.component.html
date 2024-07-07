@@ -17,23 +17,22 @@
 
       </div>
 
-      <nz-table class="table" nzShowPagination="false" [nzData]="listData" style="width: 100%; margin-top: 1.5em">
+      <nz-table [nzScroll]="{ x: '1200px' , y: '400px' }" class="table" nzShowPagination="false" [nzData]="listData" style="width: 100%; margin-top: 1.5em">
         <thead>
           <tr>
-            <th nzAlign="center">
+            <th nzAlign="center" nzWidth="50px">
               <label
                 nz-checkbox
                 [ngModel]="checkedBoxAll"
                 (ngModelChange)="checkedAll($event)"
               ></label>
             </th>
-            <th nzAlign="center">STT</th>
+            <th nzAlign="center" nzWidth="80px">STT</th>
             <th nzAlign="center">Mã đăng ký</th>
             <th nzAlign="center">Họ và tên</th>
             <th nzAlign="center">Số CMT</th>
             <th nzAlign="center">Giới tính</th>
-            <th nzAlign="center">Nơi TT</th>
-            <th nzAlign="center">Nơi CT</th>
+            <th nzAlign="center">Ngày sinh</th>
             <th nzAlign="center">Trạng thái</th>
             <th nzAlign="center">Ghi chú</th>
           </tr>
@@ -63,10 +62,7 @@
               {{ item.gioiTinh }}
             </td>
             <td nzAlign="center">
-              {{ item.noiTT }}
-            </td>
-            <td nzAlign="center">
-              {{ item.noiCT }}
+              {{ item.ngaySinh | date : 'yyyy-MM-dd' }}
             </td>
             <td nzAlign="center">
               {{ item.state }}

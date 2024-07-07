@@ -32,13 +32,19 @@ export class SubmitFormComponent implements OnInit {
 
   ngOnInit(): void {
     // this.data = 'Bạn có chắc muốn xóa ????';
+    this.buildMessage();
   }
 
   handleOk(): void {
     this.isConfirmLoading = true;
     switch (this.type) {
       case SubmitTypeEnum.AVATAR:
-        
+        this.service.submitAvatar(this.listId).subscribe(res => {
+          if (res.status == 200) {
+            this.isConfirmLoading = false;
+            this.modalRef.close(true);
+          }
+        })
         break;
       case SubmitTypeEnum.DRIVER:
         this.service.submitDriver(this.listId).subscribe(res => {

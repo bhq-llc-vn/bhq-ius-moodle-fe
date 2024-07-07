@@ -30,11 +30,12 @@ export class SubmitFormComponent implements OnInit {
 
   ngOnInit(): void {
     // this.data = 'Bạn có chắc muốn xóa ????';
+    this.buildMessage();
   }
 
   handleOk(): void {
     this.isConfirmLoading = true;
-    this.service.submitDriver(this.listId).subscribe(res => {
+    this.service.submitCourse(this.listId).subscribe(res => {
       if (res.status == 200) {
         this.isConfirmLoading = false;
         this.modalRef.close(true);

@@ -168,7 +168,8 @@ export class DriverComponent implements OnInit {
       .create({
         nzTitle: 'Đẩy hồ sơ lên hệ thống',
         nzContent: SubmitFormComponent,
-        nzWidth: 'modal-custom',
+        nzClassName:'modal-custom',
+        nzWidth: '400px',
         nzCentered: true,
         nzMaskClosable: false,
         nzDirection: 'ltr', // left to right
@@ -200,7 +201,8 @@ export class DriverComponent implements OnInit {
       .create({
         nzTitle: 'Đẩy ảnh lên hệ thống',
         nzContent: SubmitFormComponent,
-        nzWidth: 'modal-custom',
+        nzClassName:'modal-custom',
+        nzWidth: '400px',
         nzCentered: true,
         nzMaskClosable: false,
         nzDirection: 'ltr', // left to right

@@ -161,8 +161,10 @@ export class CourseComponent implements OnInit {
   onSubmit(): void {
     this.modalService
       .create({
+        nzTitle: 'Đẩy khóa học lên hệ thống',
         nzContent: SubmitFormComponent,
-        nzWidth: 'modal-custom',
+        nzClassName:'modal-custom',
+        nzWidth: '400px',
         nzCentered: true,
         nzMaskClosable: false,
         nzDirection: 'ltr', // left to right

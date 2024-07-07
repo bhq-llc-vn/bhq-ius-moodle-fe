@@ -10,7 +10,8 @@ export interface MenuItem {
     children: MenuItem[];
 }
 
-export const menuCode = ['reportOne', 'user']
+export const menuCodeAdmin = ['reportOne', 'user']
+export const menuCodeUser = ['reportOne']
 
 export const menuItem: MenuItem[] = [
     {
