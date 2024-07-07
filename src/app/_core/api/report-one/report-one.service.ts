@@ -24,6 +24,10 @@ export class ReportOneService implements ReportOneData {
     return this.api.submitCourse(data);
   }
 
+  submitAvatar(data: number[]): Observable<any> {
+    return this.api.submitAvatar(data);
+  }
+
   uploadFileXml(file: File): Observable<any> {
     return this.api.uploadFileXml(file);
   }

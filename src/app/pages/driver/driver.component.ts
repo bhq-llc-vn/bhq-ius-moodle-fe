@@ -11,6 +11,7 @@ import { ReportOneData } from 'src/app/_core/api/report-one/report-one-data';
 import { Driver } from 'src/app/_core/model/driver';
 import { SubmitFormComponent } from './submit-form/submit-form.component';
 import { ShareService } from 'src/app/_share/share.service';
+import { SubmitTypeEnum } from 'src/app/_core/enum/submit-type-enum';
 
 @Component({
   selector: 'app-driver',
@@ -172,7 +173,8 @@ export class DriverComponent implements OnInit {
         nzMaskClosable: false,
         nzDirection: 'ltr', // left to right
         nzComponentParams: {
-          listId: this.listId
+          listId: this.listId,
+          type: SubmitTypeEnum.DRIVER
         }
       })
       .afterClose.subscribe({
@@ -182,6 +184,38 @@ export class DriverComponent implements OnInit {
             this.notifyService.success(
               'Thành công',
               'Đẩy hồ sơ',
+              this.modalOptions
+            );
+          }
+          this.getDriver();
+        },
+        error: (res) => {
+          console.log(res);
+        },
+      });
+  }
+
+  onSubmitAvatar(): void {
+    this.modalService
+      .create({
+        nzTitle: 'Đẩy ảnh lên hệ thống',
+        nzContent: SubmitFormComponent,
+        nzWidth: 'modal-custom',
+        nzCentered: true,
+        nzMaskClosable: false,
+        nzDirection: 'ltr', // left to right
+        nzComponentParams: {
+          listId: this.listId,
+          type: SubmitTypeEnum.AVATAR
+        }
+      })
+      .afterClose.subscribe({
+        next: (res) => {
+          console.log(res);
+          if (res) {
+            this.notifyService.success(
+              'Thành công',
+              'Đẩy ảnh',
               this.modalOptions
             );
           }

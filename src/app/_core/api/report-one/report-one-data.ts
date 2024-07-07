@@ -5,6 +5,7 @@ export abstract class ReportOneData {
   abstract searchCourse(pageNumber: number, pageSize: number, txtSearch?: string): Observable<any>;
   abstract submitDriver(data: number[]): Observable<any>;
   abstract submitCourse(data: number[]): Observable<any>;
+  abstract submitAvatar(data: number[]): Observable<any>;
   /**
   * using for upload xml file
   * @param file 

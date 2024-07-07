@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { ReportOneData } from 'src/app/_core/api/report-one/report-one-data';
+import { SubmitTypeEnum } from 'src/app/_core/enum/submit-type-enum';
 
 @Component({
   selector: 'app-submit-form',
@@ -12,6 +13,7 @@ export class SubmitFormComponent implements OnInit {
   @Input() title: string = '';
   @Input() data: string = '';
   @Input() listId: number[] = [];
+  @Input() type: string = '';
 
   isVisible = false;
   isConfirmLoading = false;
@@ -34,12 +36,22 @@ export class SubmitFormComponent implements OnInit {
 
   handleOk(): void {
     this.isConfirmLoading = true;
-    this.service.submitDriver(this.listId).subscribe(res => {
-      if (res.status == 200) {
-        this.isConfirmLoading = false;
-        this.modalRef.close(true);
-      }
-    })
+    switch (this.type) {
+      case SubmitTypeEnum.AVATAR:
+
+        break;
+      case SubmitTypeEnum.DRIVER:
+        this.service.submitDriver(this.listId).subscribe(res => {
+          if (res.status == 200) {
+            this.isConfirmLoading = false;
+            this.modalRef.close(true);
+          }
+        })
+        break;
+      default:
+        break;
+    }
+
   }
 
   handleCancel(): void {
