@@ -38,7 +38,7 @@ export class SubmitFormComponent implements OnInit {
     this.isConfirmLoading = true;
     switch (this.type) {
       case SubmitTypeEnum.AVATAR:
-
+        
         break;
       case SubmitTypeEnum.DRIVER:
         this.service.submitDriver(this.listId).subscribe(res => {
