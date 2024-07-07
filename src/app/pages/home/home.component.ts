@@ -42,98 +42,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getProject();
-    this.getMember();
-    this.getTask();
+  
     this.refresh();
   }
 
-  public getProject() {
-    this.projectData
-      .search(this.pageNumber, this.pageSize, 'parentId.nu.nu,')
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.listData = res.pagingData.content;
-          this.totalProject = res.pagingData.totalElements;
-          // console.log(this.listData);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-  }
-
-  showAllProject() {
-    this.pageSize = 99999;
-    this.getProject();
-    this.isProjectHidden = true;
-  }
-
-  showLessProject() {
-    this.pageSize = 8;
-    this.getProject();
-    this.isProjectHidden = false;
-  }
-
-  public getMember() {
-    this.memberData
-      .search(this.pageNumber, this.pageSize, this.txtSearch)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.listMember = res.pagingData.content;
-          // console.log(this.listData);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-  }
-
-  showAllMember() {
-    this.pageSize = 99999;
-    this.getMember();
-    this.isMemberHidden = true;
-  }
-
-  showLessMember() {
-    this.pageSize = 8;
-    this.getMember();
-    this.isMemberHidden = false;
-  }
-
-  public getTask() {
-    this.taskData
-      .search(this.pageNumber, this.pageSize, 'parentId.nu.nu,')
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.listTasks = res.pagingData.content;
-          this.totalTask = res.pagingData.totalElements;
-          // console.log(this.listData);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-  }
-
-  showAllTask() {
-    this.pageSize = 99999;
-    this.getTask();
-    this.isTaskHidden = true;
-  }
-
-  showLessTask() {
-    this.pageSize = 8;
-    this.getTask();
-    this.isTaskHidden = false;
-  }
-
-  projectNav(id: any) {
-    this.router.navigate(['pages/task/project-task', id]);
-  }
 
   realTime() {
     setTimeout(() => {

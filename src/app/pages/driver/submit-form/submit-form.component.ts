@@ -23,10 +23,16 @@ export class SubmitFormComponent implements OnInit {
   ) { }
 
   buildMessage() {
-    if (this.listId.length > 0) {
-      this.data = 'Bạn có chắc muốn đẩy NHỮNG BỘ HỒ SƠ này không ?'
+    let type = "";
+    if (this.type == SubmitTypeEnum.AVATAR) {
+      type = "ẢNH"
     } else {
-      this.data = 'Bạn có chắc muốn đẩy TOÀN BỘ HỒ SƠ không ?'
+      type = "HỒ SƠ"
+    }
+    if (this.listId.length > 0) {
+      this.data = 'Bạn có chắc muốn đẩy DANH SÁCH ' + type +  ' này không ?'
+    } else {
+      this.data = 'Bạn có chắc muốn đẩy TOÀN BỘ ' + type + ' không ?'
     }
   }
 

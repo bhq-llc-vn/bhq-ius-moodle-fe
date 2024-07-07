@@ -22,9 +22,9 @@ export class SubmitFormComponent implements OnInit {
 
   buildMessage() {
     if(this.listId.length > 0) {
-      this.data = 'Bạn có chắc muốn đẩy NHỮNG BỘ HỒ SƠ này không ?'
+      this.data = 'Bạn có chắc muốn đẩy NHỮNG KHÓA HỌC này không ?'
     } else {
-      this.data = 'Bạn có chắc muốn đẩy TOÀN BỘ HỒ SƠ không ?'
+      this.data = 'Bạn có chắc muốn đẩy TOÀN BỘ KHÓA HỌC không ?'
     }
   }
 

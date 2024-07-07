@@ -1,31 +1,38 @@
 <div class="member-wrapper">
   <div class="container">
     <div class="row">
-      <div class="tool" style="width: 100%; margin-top: 1.5em">
-        <nz-input-group class="search" [nzSuffix]="suffixIconSearch">
-          <input id="search" type="text" nz-input placeholder="Nhập từ tìm kiếm" (keyup.enter)="search()" />
-        </nz-input-group>
-        <ng-template #suffixIconSearch>
-          <span nz-icon nzType="search"></span>
-        </ng-template>
-        <button nz-button (click)="onSubmit()" class="ml-auto mr-2">
-          Submit học viên
-        </button>
-        <button nz-button (click)="onSubmitAvatar()" class="ml-auto mr-2">
-          Submit Ảnh học viên
-        </button>
-
+      <!-- <div class="tool" style="width: 100%; margin-top: 1.5em"> -->
+      <div nz-row [nzGutter]="8" style="width: 100%; margin-top: 1.5em">
+        <div nz-col nzSpan="12">
+          <nz-input-group class="search" [nzSuffix]="suffixIconSearch">
+            <input id="search" type="text" nz-input placeholder="Nhập từ tìm kiếm" (keyup.enter)="search()" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+        <div nz-col nzSpan="12">
+          <div  class="float-right">
+            <button nz-button (click)="onSubmit()" class="ml-auto mr-2">
+              Submit học viên
+            </button>
+            <button nz-button (click)="onSubmitAvatar()" class="ml-auto mr-2">
+              Submit Ảnh học viên
+            </button>
+          </div>
+       
+        </div>
       </div>
 
-      <nz-table [nzScroll]="{ x: '1200px' , y: '400px' }" class="table" nzShowPagination="false" [nzData]="listData" style="width: 100%; margin-top: 1.5em">
+      <!-- </div> -->
+    </div>
+    <div class="row">
+      <nz-table [nzScroll]="{ x: '1200px' , y: '400px' }" class="table" nzShowPagination="false" [nzData]="listData"
+        style="width: 100%; margin-top: 1.5em">
         <thead>
           <tr>
             <th nzAlign="center" nzWidth="50px">
-              <label
-                nz-checkbox
-                [ngModel]="checkedBoxAll"
-                (ngModelChange)="checkedAll($event)"
-              ></label>
+              <label nz-checkbox [ngModel]="checkedBoxAll" (ngModelChange)="checkedAll($event)"></label>
             </th>
             <th nzAlign="center" nzWidth="80px">STT</th>
             <th nzAlign="center">Mã đăng ký</th>
@@ -40,11 +47,7 @@
         <tbody>
           <tr *ngFor="let item of listData; let idx = index">
             <td nzAlign="center">
-              <label
-                nz-checkbox
-                [ngModel]="item.isChecked"
-                (ngModelChange)="isChecked($event, idx)"
-              ></label>
+              <label nz-checkbox [ngModel]="item.isChecked" (ngModelChange)="isChecked($event, idx)"></label>
             </td>
             <td nzAlign="center">
               {{ idx + 1 }}
