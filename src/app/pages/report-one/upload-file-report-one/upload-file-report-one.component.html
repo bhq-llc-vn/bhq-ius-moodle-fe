@@ -1,34 +1,5 @@
-<!-- <nz-modal nzTitle="Modal" nzOkText="Upload" nzCancelText="Hủy" (nzOnOk)="save()"
-    (nzOnCancel)="close()">
-</nz-modal>
-<ng-template *nzModalContent>
-    <nz-upload nzType="drag" [nzMultiple]="true" (nzChange)="handleChange($event)">
-        <p class="ant-upload-drag-icon">
-            <span nz-icon nzType="inbox"></span>
-        </p>
-        <p class="ant-upload-text">Kéo hoặc thả vào vùng upload</p>
-        <p class="ant-upload-hint">
-            Hỗ trợ upload 1 file
-        </p>
-    </nz-upload>
-</ng-template> -->
-<!-- <div [formGroup]="formValidation"> -->
 
-<!-- <div class="modal-header-custom p-2">
-    <button nz-button nzType="default" (click)="close()">
-        <span nz-icon nzType="close" nzTheme="outline"></span>
-    </button>
-</div> -->
 <div class="modal-content p-2">
-    <!-- <nz-upload [nzFileList]="fileList" [nzAction]="urlUpload" [nzAccept]="fileTypeSupport" nzType="drag" [nzMultiple]="true" (nzChange)="handleChange($event)">
-        <p class="ant-upload-drag-icon">
-            <span nz-icon nzType="inbox"></span>
-        </p>
-        <p class="ant-upload-text">Kéo hoặc thả vào vùng upload</p>
-        <p class="ant-upload-hint">
-            Hỗ trợ upload 1 file với định dạng XML
-        </p>
-    </nz-upload> -->
     <app-input-file [isDialog]="true" [fileListInput]="files" (onChange)="onChangeEventUploadFile($event)" (onDelete)="onDeleteEvent($event)" ></app-input-file>
 </div>
 <div class="modal-footer-custom p-2">
@@ -39,4 +10,3 @@
         Thoát
     </button>
 </div>
-<!-- </div> -->

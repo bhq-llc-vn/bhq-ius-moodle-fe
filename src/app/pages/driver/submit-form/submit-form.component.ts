@@ -24,13 +24,22 @@ export class SubmitFormComponent implements OnInit {
 
   buildMessage() {
     let type = "";
-    if (this.type == SubmitTypeEnum.AVATAR) {
-      type = "ẢNH"
-    } else {
-      type = "HỒ SƠ"
+    switch (this.type) {
+      case SubmitTypeEnum.COURSE:
+        type = "KHÓA HỌC"
+        break;
+      case SubmitTypeEnum.DRIVER:
+        type = "HỒ SƠ"
+        break;
+      case SubmitTypeEnum.AVATAR:
+        type = "ẢNH"
+        break;
+      default:
+        break;
     }
+
     if (this.listId.length > 0) {
-      this.data = 'Bạn có chắc muốn đẩy DANH SÁCH ' + type +  ' này không ?'
+      this.data = 'Bạn có chắc muốn đẩy DANH SÁCH ' + type + ' này không ?'
     } else {
       this.data = 'Bạn có chắc muốn đẩy TOÀN BỘ ' + type + ' không ?'
     }
@@ -54,6 +63,14 @@ export class SubmitFormComponent implements OnInit {
         break;
       case SubmitTypeEnum.DRIVER:
         this.service.submitDriver(this.listId).subscribe(res => {
+          if (res.status == 200) {
+            this.isConfirmLoading = false;
+            this.modalRef.close(true);
+          }
+        })
+        break;
+      case SubmitTypeEnum.COURSE:
+        this.service.submitCourse(this.listId).subscribe(res => {
           if (res.status == 200) {
             this.isConfirmLoading = false;
             this.modalRef.close(true);

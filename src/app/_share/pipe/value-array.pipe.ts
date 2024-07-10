@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ValueArrayPipe implements PipeTransform {
 
   transform(objects: any): any {
-    debugger;
+    // debugger;
     console.log(objects);
     const list = Array.from(Object.values(objects));
     return Object.values(objects);

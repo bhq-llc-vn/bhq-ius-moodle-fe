@@ -6,14 +6,14 @@ export interface Course {
 }
 
 export interface pagingData {
-  content: [courseContent];
+  content: [CourseModel];
   pageable: pageable;
   totalElements: number;
   totalPages?: number;
   size?: number;
 }
 
-export class courseContent extends BaseEntity {
+export class CourseModel extends BaseEntity {
   id: number;
   uuid: string;
   soCMT: string;
@@ -30,14 +30,16 @@ export class courseContent extends BaseEntity {
   soBCI: string;
   luuLuong: string;
   soHocSinh: string;
-  ngayKhaiGiang: Date;
-  ngayBeGiang: Date;
+  ngayKhaiGiang: string;
+  ngayBeGiang: string;
   soQDKG: string;
-  ngayQDKG: Date;
-  ngaySatHach: Date;
+  ngayQDKG: string;
+  ngaySatHach: string;
   thoiGianDT: string;
   state: string;
   error: string;
+  ngayGui: string;
+  nguoiGui: string;
   isChecked: Boolean;
 
   constructor() {
@@ -59,15 +61,17 @@ export class courseContent extends BaseEntity {
     this.soBCI = '';
     this.luuLuong = '';
     this.soHocSinh = '';
-    this.ngayKhaiGiang = new Date();
-    this.ngayBeGiang = new Date();
+    this.ngayKhaiGiang = '';
+    this.ngayBeGiang = '';
     this.soQDKG = '';
-    this.ngayQDKG = new Date();
-    this.ngaySatHach = new Date();
+    this.ngayQDKG = '';
+    this.ngaySatHach = '';
     this.thoiGianDT = '';
     this.isChecked = false;
     this.state = '';
     this.error = ';'
+    this.ngayGui = '';
+    this.nguoiGui = '';
   }
 }
 

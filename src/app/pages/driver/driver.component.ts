@@ -196,6 +196,39 @@ export class DriverComponent implements OnInit {
       });
   }
 
+  onSubmitCourse(): void {
+    this.modalService
+      .create({
+        nzTitle: 'Đẩy hồ sơ lên hệ thống',
+        nzContent: SubmitFormComponent,
+        nzClassName:'modal-custom',
+        nzWidth: '400px',
+        nzCentered: true,
+        nzMaskClosable: false,
+        nzDirection: 'ltr', // left to right
+        nzComponentParams: {
+          listId: this.listId,
+          type: SubmitTypeEnum.DRIVER
+        }
+      })
+      .afterClose.subscribe({
+        next: (res) => {
+          console.log(res);
+          if (res) {
+            this.notifyService.success(
+              'Thành công',
+              'Đẩy hồ sơ',
+              this.modalOptions
+            );
+          }
+          this.getDriver();
+        },
+        error: (res) => {
+          console.log(res);
+        },
+      });
+  }
+
   onSubmitAvatar(): void {
     this.modalService
       .create({

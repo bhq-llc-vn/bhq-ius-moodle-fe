@@ -30,6 +30,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 // NgZorro local english language settings
 import { NZ_I18N, en_US, vi_VN } from 'ng-zorro-antd/i18n';
@@ -74,6 +75,7 @@ const NZ_MODULES = [
   NzPopconfirmModule,
   NzAlertModule,
   NzBadgeModule,
+  NzDividerModule
 ];
 
 @NgModule({

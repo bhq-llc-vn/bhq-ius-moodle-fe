@@ -1,5 +1,5 @@
 <div class="member-wrapper">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <!-- <div class="tool" style="width: 100%; margin-top: 1.5em"> -->
       <div nz-row [nzGutter]="8" style="width: 100%; margin-top: 1.5em">
@@ -13,11 +13,14 @@
         </div>
         <div nz-col nzSpan="12">
           <div  class="float-right">
+            <button nz-button (click)="onSubmitCourse()" class="ml-auto mr-2">
+              Đồng bộ khóa học
+            </button>
             <button nz-button (click)="onSubmit()" class="ml-auto mr-2">
-              Submit học viên
+              Đồng bộ học viên
             </button>
             <button nz-button (click)="onSubmitAvatar()" class="ml-auto mr-2">
-              Submit Ảnh học viên
+              Đồng bộ Ảnh học viên
             </button>
           </div>
        
@@ -27,7 +30,7 @@
       <!-- </div> -->
     </div>
     <div class="row">
-      <nz-table [nzScroll]="{ x: '1200px' , y: '400px' }" class="table" nzShowPagination="false" [nzData]="listData"
+      <nz-table [nzScroll]="{ y: '300px' }" class="table" nzShowPagination="false" [nzData]="listData"
         style="width: 100%; margin-top: 1.5em">
         <thead>
           <tr>
@@ -35,11 +38,11 @@
               <label nz-checkbox [ngModel]="checkedBoxAll" (ngModelChange)="checkedAll($event)"></label>
             </th>
             <th nzAlign="center" nzWidth="80px">STT</th>
-            <th nzAlign="center">Mã đăng ký</th>
-            <th nzAlign="center">Họ và tên</th>
-            <th nzAlign="center">Số CMT</th>
+            <th nzAlign="center" [nzSortFn]="true">Mã đăng ký</th>
+            <th nzAlign="center" [nzSortFn]="true">Họ và tên</th>
+            <th nzAlign="center" [nzSortFn]="true">Số CMT</th>
             <th nzAlign="center">Giới tính</th>
-            <th nzAlign="center">Ngày sinh</th>
+            <th nzAlign="center" [nzSortFn]="true">Ngày sinh</th>
             <th nzAlign="center">Trạng thái</th>
             <th nzAlign="center">Ghi chú</th>
           </tr>
