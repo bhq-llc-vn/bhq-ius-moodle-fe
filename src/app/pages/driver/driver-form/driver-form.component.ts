@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import { TeamData } from 'src/app/_core/api/team/team-data';
+
 import { ModeModal } from 'src/app/_core/enum/modeModal';
 import { teamContent } from 'src/app/_core/model/team';
 
@@ -26,7 +26,6 @@ export class DriverFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private teamData: TeamData,
     private modelRef: NzModalRef<DriverFormComponent>
   ) {}
 
@@ -58,57 +57,11 @@ export class DriverFormComponent implements OnInit {
   }
 
   getById(id: number) {
-    this.teamData.getById(id).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.formValidation.setValue({
-          // id: res.data.id,
-          teamName: res.data.teamName,
-          description: res.data.description
-        });
-      },
-    });
+ 
   }
 
   handleOk(): void {
-    this.isConfirmLoading = true;
-    const item: teamContent = this.formValidation.value;
-    if (this.mode === ModeModal.CREATE) {
-      this.teamData.save(item).subscribe({
-        next: (res: teamContent) => {
-          console.log(res);
-          if (res) {
-            this.isVisible = false;
-            this.isConfirmLoading = false;
-            this.modelRef.close(res);
-          }
-        },
-        error: (err: any) => {
-          console.log(err);
-        },
-        complete: () => {
-          console.log('done');
-        },
-      });
-    } else if (this.mode === ModeModal.UPDATE) {
-      item.id = this.id;
-      this.teamData.update(this.id, item).subscribe({
-        next: (res: teamContent) => {
-          console.log(res);
-          if (res) {
-            this.isVisible = false;
-            this.isConfirmLoading = false;
-            this.modelRef.close(res);
-          }
-        },
-        error: (err: any) => {
-          console.log(err);
-        },
-        complete: () => {
-          console.log('done');
-        },
-      });
-    }
+   
   }
 
   handleCancel(): void {

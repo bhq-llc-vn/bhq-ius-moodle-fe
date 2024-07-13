@@ -2,12 +2,8 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { ProjectData } from 'src/app/_core/api/project/project-data';
 import { ModeModal } from 'src/app/_core/enum/modeModal';
 import { UserModel } from 'src/app/_core/model/user';
-import { DeleteComponent } from '../../project/delete/delete.component';
-import { ProjectFormComponent } from '../../project/project-form/project-form.component';
-import { SubProjectComponent } from '../../project/sub-project/sub-project.component';
 import { UserData } from 'src/app/_core/api/user/user-data';
 
 @Component({
@@ -39,7 +35,7 @@ export class UserFormComponent implements OnInit {
     private service: UserData,
     private modal: NzModalService,
     private notifyService: NzNotificationService,
-    private modelRef: NzModalRef<ProjectFormComponent>
+    private modelRef: NzModalRef<UserFormComponent>
   ) { }
 
   get username() {

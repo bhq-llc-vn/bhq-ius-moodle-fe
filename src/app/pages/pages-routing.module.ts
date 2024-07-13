@@ -17,10 +17,6 @@ const routes: Routes = [
         
       },
       {
-        path: 'welcome',
-        loadChildren: () => import('./welcome/welcome.module').then((m) => m.WelcomeModule),
-      },
-      {
         path: 'report-one',
         loadChildren: () => import('./report-one/report-one.module').then((m) => m.ReportOneModule),
       },

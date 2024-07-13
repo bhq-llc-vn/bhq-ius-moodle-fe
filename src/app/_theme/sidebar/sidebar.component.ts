@@ -15,7 +15,6 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { BinarySearchService } from 'src/app/_base/util';
 import { ModeModal } from 'src/app/_core/enum/modeModal';
-import { ProjectFormComponent } from 'src/app/pages/project/project-form/project-form.component';
 
 
 @Component({

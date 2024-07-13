@@ -6,8 +6,8 @@ import { HasPermissionService } from 'src/app/_base/guard/has-permission.service
 import { ModeModal } from 'src/app/_base/util';
 import { UserData } from 'src/app/_core/api/user/user-data';
 import { UserModel } from 'src/app/_core/model/user';
-import { DeleteComponent } from '../project/delete/delete.component';
-import { SubProjectComponent } from '../project/sub-project/sub-project.component';
+
+
 import { UserFormComponent } from './user-form/user-form.component';
 import { ConfirmFormComponent } from 'src/app/_component/confirm-form/confirm-form.component';
 
@@ -257,7 +257,7 @@ export class UserComponent implements OnInit {
       .create({
         nzTitle: 'Xóa danh sách người dùng',
         nzClassName: 'modal-custom',
-        nzContent: DeleteComponent,
+        nzContent: ConfirmFormComponent,
         nzCentered: true,
         nzMaskClosable: false,
         nzDirection: 'ltr', // left to right

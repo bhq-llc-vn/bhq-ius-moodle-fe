@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { TeamData } from 'src/app/_core/api/team/team-data';
 import { ModeModal } from 'src/app/_core/enum/modeModal';
 import { teamContent } from 'src/app/_core/model/team';
 import { DeleteComponent } from './delete/delete.component';

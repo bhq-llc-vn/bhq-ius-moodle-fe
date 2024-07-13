@@ -12,7 +12,6 @@ import vi from '@angular/common/locales/vi';
 import { ShareService } from './shared/share.service';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NgZorroModule } from './ng-zorro.module';
-import { ProjectModule } from '../pages/project/project.module';
 
 registerLocaleData(vi);
 
@@ -22,8 +21,7 @@ registerLocaleData(vi);
     RouterModule,
     IconsProviderModule.forRoot(),
     NzDropDownModule,
-    NgZorroModule.forRoot(),
-    ProjectModule
+    NgZorroModule.forRoot()
   ],
   declarations: [
     LayoutComponent,

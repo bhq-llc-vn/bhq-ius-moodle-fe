@@ -7,7 +7,6 @@ import { UploadFileData } from 'src/app/_core/api/upload-file/upload-file-data';
 import { ResponseStatusEnum } from 'src/app/_core/enum/response-status-enum';
 import { UploadFile } from 'src/app/_core/model/upload-file';
 import { ShareService } from 'src/app/_share/share.service';
-import { TaskUploadFileComponent } from 'src/app/pages/task/task-detail/task-upload-file/task-upload-file.component';
 
 @Component({
   selector: 'app-upload-file',

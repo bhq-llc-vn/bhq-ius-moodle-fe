@@ -18,7 +18,7 @@ export class ConfirmFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.data = 'Bạn có chắc muốn xóa ????';
+    this.data = 'Bạn có chắc muốn xóa ????';
   }
 
   handleOk(): void {

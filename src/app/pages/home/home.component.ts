@@ -8,7 +8,6 @@ import {
 import { Router } from '@angular/router';
 import { MemberData } from 'src/app/_core/api/member/member-data';
 import { TaskData } from 'src/app/_core/api/task/task-data';
-import { ProjectData } from '../../_core/api/project/project-data';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +33,6 @@ export class HomeComponent implements OnInit {
   isTaskHidden = false;
 
   constructor(
-    private projectData: ProjectData,
     private memberData: MemberData,
     private taskData: TaskData,
     private element: ElementRef,
