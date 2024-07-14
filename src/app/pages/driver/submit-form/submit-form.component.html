@@ -1,17 +1,19 @@
-<div class="modal-content">
-  <form nz-form>
-    <!-- row 1 -->
-    <div class="flex flex-row">
-      <div nz-col class="text-center">
-        <p>{{ data }}</p>
+<nz-spin [nzSpinning]="isConfirmLoading">
+  <div class="modal-content">
+    <form nz-form>
+      <!-- row 1 -->
+      <div class="flex flex-row">
+        <div nz-col class="text-center">
+          <p>{{ data }}</p>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
 
-  <div class="modal-footer" *nzModalFooter>
-    <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">
-      Submit
-    </button>
-    <button nz-button nzType="default" (click)="handleCancel()">Hủy</button>
+    <div class="modal-footer" *nzModalFooter>
+      <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">
+        Submit
+      </button>
+      <button nz-button nzType="default" (click)="handleCancel()">Hủy</button>
+    </div>
   </div>
-</div>
+</nz-spin>

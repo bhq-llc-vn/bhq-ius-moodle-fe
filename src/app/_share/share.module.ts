@@ -9,6 +9,7 @@ import { ValueArrayPipe } from './pipe/value-array.pipe';
 import { HasPermissionDirective } from './directive/has-permission.directive';
 import { BaseModule } from '../_base/base.module';
 import { StoreDataModule } from '../_base/store-data.module';
+import { RecordStatePipe } from './pipe/record-state.pipe';
 
 
 
@@ -20,6 +21,7 @@ import { StoreDataModule } from '../_base/store-data.module';
     TestDirective,
     ValueArrayPipe,
     HasPermissionDirective,
+    RecordStatePipe,
   ],
   imports: [
     CommonModule,

@@ -19,17 +19,6 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <!-- <div nz-col [nzSpan]="10">
-          <nz-form-item nz-row [nzGutter]="2">
-            <nz-form-label nz-col [nzSpan]="6">
-              Khóa học
-            </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="18" >
-              <input nz-input ngModel="course.username" name="name" [readonly]="true"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div> -->
       </div>
 
       <div nz-row class="d-flex flex-row">
@@ -49,42 +38,6 @@
           </nz-form-item>
         </div>
       </div>
-
-      <!-- <div nz-row class="d-flex flex-row">
-        <div nz-col [nzSpan]="8">
-          <nz-form-item nz-row [nzGutter]="2">
-            <nz-form-label nz-col [nzSpan]="8">
-              Người gửi
-            </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="16" >
-              <input nz-input [(ngModel)]="course.nguoiGui" name="nguoiGui" [readonly]="true"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="8">
-          <nz-form-item nz-row [nzGutter]="2">
-            <nz-form-label nz-col [nzSpan]="8">
-              Ngày gửi
-            </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="16" >
-              <input nz-input [(ngModel)]="course.ngayGui" name="nguoiGui" [readOnly]="true"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="8">
-          <nz-form-item nz-row [nzGutter]="2">
-            <nz-form-label nz-col [nzSpan]="8">
-              Tổng bản ghi
-            </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="16" >
-              <input nz-input [(ngModel)]="course.soHocSinh" name="soHocSinh" [readOnly]="true"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div> -->
 
       <div nz-row class="d-flex flex-row">
         <div nz-col [nzSpan]="8">
@@ -134,15 +87,38 @@
             </nz-form-control>
           </nz-form-item>
         </div>
+        <div nz-col [nzSpan]="8">
+          <nz-form-item nz-row [nzGutter]="2">
+            <nz-form-label nz-col [nzSpan]="8">
+              Trạng thái
+            </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="16">
+              <input nz-input [(ngModel)]="course.state" name="state" [readonly]="true" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row class="d-flex flex-row">
+        <div nz-col [nzSpan]="24">
+          <div class="float-right">
+            <button nz-button (click)="onSubmitCourse()" class="ml-auto mr-2">
+              1. Đồng bộ khóa học
+            </button>
+            <button nz-button (click)="onSubmitDriver()" class="ml-auto mr-2">
+              2. Đồng bộ học viên
+            </button>
+            <button nz-button (click)="onSubmitAvatar()" class="ml-auto mr-2">
+              3. Đồng bộ Ảnh học viên
+            </button>
+            <button nz-button (click)="onSubmitUserEnroll()" class="ml-auto mr-2">
+              4. Đồng bộ đăng ký
+            </button>
+          </div>
+        </div>
       </div>
       <nz-divider nzText="DANH SÁCH HỌC VIÊN" nzOrientation="left"></nz-divider>
       <div nz-row class="d-flex flex-row">
-        <!-- <div class="tool" style="width: 100%; margin-top: 1.5em">
-          <button nz-button (click)="onUpload()" class="ml-auto mr-2">
-            Upload File XML
-          </button>
-        </div> -->
-        <app-driver class="app-driver pl-3 pr-3"></app-driver>
+        <app-driver (onSubmitEvent)="onSubmitEvent($event)" class="app-driver pl-3 pr-3"></app-driver>
       </div>
     </div>
 

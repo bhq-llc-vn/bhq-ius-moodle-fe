@@ -6,6 +6,7 @@ export abstract class ReportOneData {
   abstract submitDriver(data: number[]): Observable<any>;
   abstract submitCourse(data: number[]): Observable<any>;
   abstract submitAvatar(data: number[]): Observable<any>;
+  abstract submitEnroll(data: number[]): Observable<any>;
   /**
   * using for upload xml file
   * @param file 

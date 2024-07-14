@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { DeleteComponent } from './delete/delete.component';
@@ -24,6 +24,9 @@ export class DriverComponent implements OnInit {
     private shareService: ShareService,
     private element: ElementRef
   ) {}
+
+
+  @Output() onSubmitEvent = new EventEmitter();
 
   public listData: any;
   public listId: number[] = [];
@@ -126,6 +129,7 @@ export class DriverComponent implements OnInit {
     this.checkIntoArr(index);
     // console.log(this.listData[index].isChecked);
     console.log(this.listId);
+    this.onSubmitEvent.next(this.listId);
   }
 
   checkIntoArr(index: number) {

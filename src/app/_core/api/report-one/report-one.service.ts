@@ -8,6 +8,7 @@ export class ReportOneService implements ReportOneData {
 
   constructor(private api: ReportOneApi) { }
 
+
   searchDriver(pageNumber: number, pageSize: number, txtSearch?: string | undefined): Observable<any> {
     return this.api.searchDriver(pageNumber, pageSize, txtSearch);
   }
@@ -26,6 +27,10 @@ export class ReportOneService implements ReportOneData {
 
   submitAvatar(data: number[]): Observable<any> {
     return this.api.submitAvatar(data);
+  }
+
+  submitEnroll(data: number[]): Observable<any> {
+    return this.api.submitEnroll(data);
   }
 
   uploadFileXml(file: File): Observable<any> {

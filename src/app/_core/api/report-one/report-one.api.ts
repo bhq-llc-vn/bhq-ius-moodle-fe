@@ -38,6 +38,10 @@ export class ReportOneApi {
     return this.http.post(this.apiReportOneUrl + '/submit-avatar', data);
   }
 
+  submitEnroll(data: number[]): Observable<any> {
+    return this.http.post(this.apiReportOneUrl + '/submit-enroll', data);
+  }
+
   uploadFileXml(file: File): Observable<any> {
     console.log(file);
     const blob: Blob = new Blob([file])

@@ -12,12 +12,14 @@ import { DriverModule } from '../driver/driver.module';
 import { CourseModule } from '../course/course.module';
 import { UploadFileReportOneComponent } from './upload-file-report-one/upload-file-report-one.component';
 import { ComponentModule } from 'src/app/_component/component.module';
+import { SubmitFormUploadComponent } from './submit-form-upload/submit-form-upload.component';
 
 
 @NgModule({
   declarations: [
     ReportOneComponent,
-    UploadFileReportOneComponent
+    UploadFileReportOneComponent,
+    SubmitFormUploadComponent
   ],
   imports: [
     CommonModule,

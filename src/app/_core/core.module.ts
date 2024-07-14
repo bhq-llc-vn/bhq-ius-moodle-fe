@@ -13,19 +13,24 @@ import { UserService } from './api/user/user.service';
 import { ReportOneData } from './api/report-one/report-one-data';
 import { ReportOneService } from './api/report-one/report-one.service';
 import { ReportOneApi } from './api/report-one/report-one.api';
+import { CourseApi } from './api/course/course.api';
+import { CourseData } from './api/course/course-data';
+import { CourseService } from './api/course/course.service';
 
 const API = [
   MemberApi,
   UploadFileApi,
   UserApi,
-  ReportOneApi
+  ReportOneApi,
+  CourseApi
 ];
 
 const SERVICES = [
   { provide: MemberData, useClass: MemberService },
   { provide: UploadFileData, useClass: UploadFileService },
   { provide: UserData, useClass: UserService },
-  { provide: ReportOneData, useClass: ReportOneService }
+  { provide: ReportOneData, useClass: ReportOneService },
+  { provide: CourseData, useClass: CourseService }
 ];
 
 @NgModule({
