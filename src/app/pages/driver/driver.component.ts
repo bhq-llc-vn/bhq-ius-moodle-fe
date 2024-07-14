@@ -1,8 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { ModeModal } from 'src/app/_core/enum/modeModal';
-import { teamContent } from 'src/app/_core/model/team';
 import { DeleteComponent } from './delete/delete.component';
 import { DriverFormComponent } from './driver-form/driver-form.component';
 import { ConfirmFormComponent } from 'src/app/_component/confirm-form/confirm-form.component';

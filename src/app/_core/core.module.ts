@@ -1,8 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskData } from './api/task/task-data';
-import { TaskService } from './api/task/task.service';
-import { TaskApi } from './api/task/task.api';
 import { BaseModule } from '../_base/base.module';
 import { MemberApi } from './api/member/member.api';
 import { MemberData } from './api/member/member-data';
@@ -18,7 +15,6 @@ import { ReportOneService } from './api/report-one/report-one.service';
 import { ReportOneApi } from './api/report-one/report-one.api';
 
 const API = [
-  TaskApi,
   MemberApi,
   UploadFileApi,
   UserApi,
@@ -26,7 +22,6 @@ const API = [
 ];
 
 const SERVICES = [
-  { provide: TaskData, useClass: TaskService },
   { provide: MemberData, useClass: MemberService },
   { provide: UploadFileData, useClass: UploadFileService },
   { provide: UserData, useClass: UserService },

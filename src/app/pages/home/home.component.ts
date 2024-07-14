@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MemberData } from 'src/app/_core/api/member/member-data';
-import { TaskData } from 'src/app/_core/api/task/task-data';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +33,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private memberData: MemberData,
-    private taskData: TaskData,
     private element: ElementRef,
     private router: Router
   ) {}

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
 import { ModeModal } from 'src/app/_core/enum/modeModal';
-import { teamContent } from 'src/app/_core/model/team';
 
 @Component({
   selector: 'app-driver-form',
