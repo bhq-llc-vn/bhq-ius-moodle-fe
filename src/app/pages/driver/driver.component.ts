@@ -9,6 +9,7 @@ import { Driver } from 'src/app/_core/model/driver';
 import { SubmitFormComponent } from './submit-form/submit-form.component';
 import { ShareService } from 'src/app/_share/share.service';
 import { SubmitTypeEnum } from 'src/app/_core/enum/submit-type-enum';
+import { NzTableQueryParams } from 'ng-zorro-antd/table';
 
 @Component({
   selector: 'app-driver',
