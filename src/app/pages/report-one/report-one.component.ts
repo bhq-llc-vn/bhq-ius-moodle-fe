@@ -29,6 +29,7 @@ export class ReportOneComponent implements OnInit {
   // public fileList: any[] = []; //
   // public upLoading: boolean = false; //
   public progress: number = 0;
+  public reportOneInfo: any = {};
 
   public uploading = false;
   public fileList: NzUploadFile[] = [];
@@ -38,7 +39,7 @@ export class ReportOneComponent implements OnInit {
   public course = new CourseModel();
 
   constructor(
-    private reportOneDate: ReportOneData,
+    private reportOneData: ReportOneData,
     private modalService: NzModalService,
     private notifyService: NotifyService,
     private shareService: ShareService,
@@ -48,6 +49,9 @@ export class ReportOneComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCourses();
+    setTimeout(() => {
+      this.getReportOneInfo();
+    }, 2000)
   }
 
 
@@ -73,9 +77,9 @@ export class ReportOneComponent implements OnInit {
     }
   }
 
-  onSubmitEvent(event: any) { 
-      console.log(event);
-      this.listId = event;
+  onSubmitEvent(event: any) {
+    console.log(event);
+    this.listId = event;
   }
 
   emitEventLoadDataCourse() {
@@ -121,7 +125,7 @@ export class ReportOneComponent implements OnInit {
               // clear file
               this.file = {};
               this.fileList = []
-          
+
             },
             error: (res) => {
               console.log(res);
@@ -134,7 +138,7 @@ export class ReportOneComponent implements OnInit {
   }
 
   getCourses() {
-    this.reportOneDate.searchCourse(1, 9999).subscribe({
+    this.reportOneData.searchCourse(1, 9999).subscribe({
       next: (res) => {
         console.log(res);
         this.listCourse = res.pagingData.content;
@@ -157,108 +161,122 @@ export class ReportOneComponent implements OnInit {
     })
   }
 
+  getReportOneInfo() {
+    if (this.course != null && this.course.id != null) {
+      this.reportOneData.getReportOneInfo(this.course.id).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.reportOneData = res.data;
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
+    }
+  }
+
   onSubmitCourse() {
     this.modalService
-    .create({
-      nzTitle: 'Đồng bộ khóa học lên hệ thống',
-      nzContent: ConfirmFormComponent,
-      nzClassName:'modal-custom',
-      nzWidth: '400px',
-      nzCentered: true,
-      nzMaskClosable: false,
-      nzDirection: 'ltr', // left to right
-      nzComponentParams: {
-        listId: [this.course.id],
-        type: SubmitTypeEnum.COURSE
-      }
-    })
-    .afterClose.subscribe({
-      next: (res) => {
-        console.log(res);
-        this.getCourseById();
-      },
-      error: (res) => {
-        console.log(res);
-      },
-    });
+      .create({
+        nzTitle: 'Đồng bộ khóa học lên hệ thống',
+        nzContent: ConfirmFormComponent,
+        nzClassName: 'modal-custom',
+        nzWidth: '400px',
+        nzCentered: true,
+        nzMaskClosable: false,
+        nzDirection: 'ltr', // left to right
+        nzComponentParams: {
+          listId: [this.course.id],
+          type: SubmitTypeEnum.COURSE
+        }
+      })
+      .afterClose.subscribe({
+        next: (res) => {
+          console.log(res);
+          this.getCourseById();
+        },
+        error: (res) => {
+          console.log(res);
+        },
+      });
   }
 
   onSubmitDriver() {
     this.modalService
-    .create({
-      nzTitle: 'Đồng bộ học viên lên hệ thống',
-      nzContent: ConfirmFormComponent,
-      nzClassName:'modal-custom',
-      nzWidth: '400px',
-      nzCentered: true,
-      nzMaskClosable: false,
-      nzDirection: 'ltr', // left to right
-      nzComponentParams: {
-        listId: this.listId,
-        type: SubmitTypeEnum.DRIVER
-      }
-    })
-    .afterClose.subscribe({
-      next: (res) => {
-        console.log(res);
-        this.emitEventLoadDataDriver();
-      },
-      error: (res) => {
-        console.log(res);
-      },
-    });
+      .create({
+        nzTitle: 'Đồng bộ học viên lên hệ thống',
+        nzContent: ConfirmFormComponent,
+        nzClassName: 'modal-custom',
+        nzWidth: '400px',
+        nzCentered: true,
+        nzMaskClosable: false,
+        nzDirection: 'ltr', // left to right
+        nzComponentParams: {
+          listId: this.listId,
+          type: SubmitTypeEnum.DRIVER
+        }
+      })
+      .afterClose.subscribe({
+        next: (res) => {
+          console.log(res);
+          this.emitEventLoadDataDriver();
+        },
+        error: (res) => {
+          console.log(res);
+        },
+      });
   }
 
   onSubmitAvatar() {
     this.modalService
-    .create({
-      nzTitle: 'Đồng bộ ảnh đại diện lên hệ thống',
-      nzContent: ConfirmFormComponent,
-      nzClassName:'modal-custom',
-      nzWidth: '400px',
-      nzCentered: true,
-      nzMaskClosable: false,
-      nzDirection: 'ltr', // left to right
-      nzComponentParams: {
-        listId: this.listId,
-        type: SubmitTypeEnum.AVATAR
-      }
-    })
-    .afterClose.subscribe({
-      next: (res) => {
-        console.log(res);
-        this.emitEventLoadDataDriver();
-      },
-      error: (res) => {
-        console.log(res);
-      },
-    });
+      .create({
+        nzTitle: 'Đồng bộ ảnh đại diện lên hệ thống',
+        nzContent: ConfirmFormComponent,
+        nzClassName: 'modal-custom',
+        nzWidth: '400px',
+        nzCentered: true,
+        nzMaskClosable: false,
+        nzDirection: 'ltr', // left to right
+        nzComponentParams: {
+          listId: this.listId,
+          type: SubmitTypeEnum.AVATAR
+        }
+      })
+      .afterClose.subscribe({
+        next: (res) => {
+          console.log(res);
+          this.emitEventLoadDataDriver();
+        },
+        error: (res) => {
+          console.log(res);
+        },
+      });
   }
 
   onSubmitUserEnroll() {
     this.modalService
-    .create({
-      nzTitle: 'Đồng bộ đăng ký lên hệ thống',
-      nzContent: ConfirmFormComponent,
-      nzClassName:'modal-custom',
-      nzWidth: '400px',
-      nzCentered: true,
-      nzMaskClosable: false,
-      nzDirection: 'ltr', // left to right
-      nzComponentParams: {
-        listId: this.listId,
-        type: SubmitTypeEnum.ENROLL
-      }
-    })
-    .afterClose.subscribe({
-      next: (res) => {
-        console.log(res);
-        this.emitEventLoadDataDriver();
-      },
-      error: (res) => {
-        console.log(res);
-      },
-    });
+      .create({
+        nzTitle: 'Đồng bộ đăng ký lên hệ thống',
+        nzContent: ConfirmFormComponent,
+        nzClassName: 'modal-custom',
+        nzWidth: '400px',
+        nzCentered: true,
+        nzMaskClosable: false,
+        nzDirection: 'ltr', // left to right
+        nzComponentParams: {
+          listId: this.listId,
+          type: SubmitTypeEnum.ENROLL
+        }
+      })
+      .afterClose.subscribe({
+        next: (res) => {
+          console.log(res);
+          this.emitEventLoadDataDriver();
+        },
+        error: (res) => {
+          console.log(res);
+        },
+      });
   }
 
 

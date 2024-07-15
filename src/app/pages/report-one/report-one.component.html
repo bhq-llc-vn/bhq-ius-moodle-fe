@@ -98,6 +98,39 @@
           </nz-form-item>
         </div>
       </div>
+      <nz-divider nzText="THÔNG TIN QUÁ TRÌNH ĐỒNG BỘ  (THÀNH CÔNG - THẤT BẠI - CHƯA ĐỒNG BỘ)" nzOrientation="left"></nz-divider>
+      <div nz-row class="d-flex flex-row">
+        <div nz-col [nzSpan]="8">
+          <nz-form-item nz-row [nzGutter]="2">
+            <nz-form-label nz-col [nzSpan]="6">
+              Học viên
+            </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="18">
+              {{reportOneInfo.driverSuccess}} - {{reportOneInfo.driverFailed}} - {{reportOneInfo.driverNotSubmitted}}
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <nz-form-item nz-row [nzGutter]="2">
+            <nz-form-label nz-col [nzSpan]="6">
+              Ảnh đại diện
+            </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="18">
+              {{reportOneInfo.profileSuccess}} - {{reportOneInfo.profileFailed}} - {{reportOneInfo.profileNotSubmitted}}
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <nz-form-item nz-row [nzGutter]="2">
+            <nz-form-label nz-col [nzSpan]="6">
+              Đăng ký
+            </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="18">
+              {{reportOneInfo.enrollSuccess}} - {{reportOneInfo.enrollFailed}} - {{reportOneInfo.enrollNotSubmitted}}
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
       <div nz-row class="d-flex flex-row">
         <div nz-col [nzSpan]="24">
           <div class="float-right">

@@ -42,6 +42,10 @@ export class ReportOneApi {
     return this.http.post(this.apiReportOneUrl + '/submit-enroll', data);
   }
 
+  getReportOneInfo(id: number): Observable<any> {
+    return this.http.get(this.apiReportOneUrl + '/get-report-one-info/' + id);
+  }
+
   uploadFileXml(file: File): Observable<any> {
     console.log(file);
     const blob: Blob = new Blob([file])

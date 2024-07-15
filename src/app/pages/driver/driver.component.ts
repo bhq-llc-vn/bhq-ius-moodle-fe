@@ -89,7 +89,7 @@ export class DriverComponent implements OnInit {
   search() {
     const input = this.element.nativeElement.querySelector('#search');
     if(input.value != null || input.value != "") {
-      this.txtSearch = `username.cn.${input.value},`;
+      this.txtSearch = `madk.cn.${input.value},`;
     }
     this.getDriver();
   }
