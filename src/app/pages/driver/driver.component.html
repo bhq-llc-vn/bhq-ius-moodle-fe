@@ -30,7 +30,7 @@
       <!-- </div> -->
     </div>
     <div class="row">
-      <nz-table [nzScroll]="{ y: '300px' }" class="table" nzShowPagination="false" [nzData]="listData"
+      <nz-table [nzScroll]="{ y: '300px' }" class="table" nzShowPagination="false" [nzData]="listData"  (nzQueryParams)="onQueryParamsChange($event)
         style="width: 100%; margin-top: 1.5em">
         <thead>
           <tr>
@@ -38,11 +38,11 @@
               <label nz-checkbox [ngModel]="checkedBoxAll" (ngModelChange)="checkedAll($event)"></label>
             </th>
             <th nzAlign="center" nzWidth="80px">STT</th>
-            <th nzAlign="center" [nzSortFn]="true">Mã đăng ký</th>
-            <th nzAlign="center" [nzSortFn]="true">Họ và tên</th>
-            <th nzAlign="center" [nzSortFn]="true">Số CMT</th>
+            <th nzAlign="center" nzColumnKey="maDK" [nzSortFn]="true">Mã đăng ký</th>
+            <th nzAlign="center" nzColumnKey="hoVaTen" [nzSortFn]="true">Họ và tên</th>
+            <th nzAlign="center" nzColumnKey="soCMT" [nzSortFn]="true">Số CMT</th>
             <th nzAlign="center">Giới tính</th>
-            <th nzAlign="center" [nzSortFn]="true">Ngày sinh</th>
+            <th nzAlign="center" nzColumnKey="ngaySinh" [nzSortFn]="true">Ngày sinh</th>
             <th nzAlign="center">Trạng thái</th>
             <th nzAlign="center">Ghi chú</th>
           </tr>
