@@ -1,7 +1,7 @@
 import { Observable } from "rxjs";
 
 export abstract class ReportOneData {
-  abstract searchDriver(pageNumber: number, pageSize: number, txtSearch?: string): Observable<any>;
+  abstract searchDriver(pageNumber: number, pageSize: number, txtSearch?: string, sort?: string): Observable<any>;
   abstract searchCourse(pageNumber: number, pageSize: number, txtSearch?: string): Observable<any>;
   abstract submitDriver(data: number[]): Observable<any>;
   abstract submitCourse(data: number[]): Observable<any>;

@@ -162,11 +162,12 @@ export class ReportOneComponent implements OnInit {
   }
 
   getReportOneInfo() {
-    if (this.course != null && this.course.id != null) {
+    console.log(this.reportOneInfo);
+    if (this.course != null && this.course.id != null && this.course.id != 0) {
       this.reportOneData.getReportOneInfo(this.course.id).subscribe({
         next: (res) => {
           console.log(res);
-          this.reportOneData = res.data;
+          this.reportOneInfo = res.data;
         },
         error: (error) => {
           console.log(error);

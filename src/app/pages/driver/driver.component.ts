@@ -32,6 +32,7 @@ export class DriverComponent implements OnInit {
   public listData: any;
   public listId: number[] = [];
   public searchField = ['Name', 'Email', 'Advanced Filter'];
+  public sortValue = '';
 
   public pageNumber = 1;
   public pageSize = 10;
@@ -90,7 +91,7 @@ export class DriverComponent implements OnInit {
   search() {
     const input = this.element.nativeElement.querySelector('#search');
     if(input.value != null || input.value != "") {
-      this.txtSearch = `madk.cn.${input.value},`;
+      this.txtSearch = `maDK.cn.${input.value},`;
     }
     this.getDriver();
   }
@@ -150,7 +151,7 @@ export class DriverComponent implements OnInit {
 
   public getDriver() {
     this.service
-      .searchDriver(this.pageNumber, this.pageSize, this.txtSearch)
+      .searchDriver(this.pageNumber, this.pageSize, this.txtSearch, this.sortValue)
       .subscribe({
         next: (res) => {
           console.log(res);
@@ -270,6 +271,10 @@ export class DriverComponent implements OnInit {
     const currentSort = sort.find(item => item.value !== null);
     const sortField = (currentSort && currentSort.key) || null;
     const sortOrder = (currentSort && currentSort.value) || null;
+    if (sortField && sortOrder) {
+      let str = sortField + "_" + sortOrder + ","
+      this.sortValue = str;
+    }
     this.getDriver();
   }
 

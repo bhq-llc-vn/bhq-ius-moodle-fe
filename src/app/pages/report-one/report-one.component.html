@@ -98,15 +98,16 @@
           </nz-form-item>
         </div>
       </div>
-      <nz-divider nzText="THÔNG TIN QUÁ TRÌNH ĐỒNG BỘ  (THÀNH CÔNG - THẤT BẠI - CHƯA ĐỒNG BỘ)" nzOrientation="left"></nz-divider>
+      <nz-divider nzText="THÔNG TIN QUÁ TRÌNH ĐỒNG BỘ" nzOrientation="left"></nz-divider>
       <div nz-row class="d-flex flex-row">
         <div nz-col [nzSpan]="8">
           <nz-form-item nz-row [nzGutter]="2">
             <nz-form-label nz-col [nzSpan]="6">
               Học viên
             </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="18">
-              {{reportOneInfo.driverSuccess}} - {{reportOneInfo.driverFailed}} - {{reportOneInfo.driverNotSubmitted}}
+            <nz-form-control nz-col [nzSpan]="18" *ngIf="reportOneInfo.driverSuccess != null">
+              Thành công: {{reportOneInfo.driverSuccess}} - Thất bại: {{reportOneInfo.driverFailed}} - Chưa đồng bộ:
+              {{reportOneInfo.driverNotSubmitted}}
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -115,8 +116,9 @@
             <nz-form-label nz-col [nzSpan]="6">
               Ảnh đại diện
             </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="18">
-              {{reportOneInfo.profileSuccess}} - {{reportOneInfo.profileFailed}} - {{reportOneInfo.profileNotSubmitted}}
+            <nz-form-control nz-col [nzSpan]="18" *ngIf="reportOneInfo.profileSuccess!= null">
+              Thành công: {{reportOneInfo.profileSuccess}} - Thất bại: {{reportOneInfo.profileFailed}} - Chưa đồng bộ:
+              {{reportOneInfo.profileNotSubmitted}}
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -125,14 +127,19 @@
             <nz-form-label nz-col [nzSpan]="6">
               Đăng ký
             </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="18">
-              {{reportOneInfo.enrollSuccess}} - {{reportOneInfo.enrollFailed}} - {{reportOneInfo.enrollNotSubmitted}}
+            <nz-form-control nz-col [nzSpan]="18" *ngIf="reportOneInfo.enrollSuccess != null">
+              Thành công: {{reportOneInfo.enrollSuccess}} - Thất bại: {{reportOneInfo.enrollFailed}} - Chưa đồng bộ:
+              {{reportOneInfo.enrollNotSubmitted}}
             </nz-form-control>
           </nz-form-item>
         </div>
       </div>
       <div nz-row class="d-flex flex-row">
-        <div nz-col [nzSpan]="24">
+        <div nz-col [nzSpan]="12">
+          <p style="color: red;"><b>Lưu ý: Cần chạy đồng bộ khóa học và học viên trước đồng bộ ảnh, đồng bộ đăng ký</b>
+          </p>
+        </div>
+        <div nz-col [nzSpan]="12">
           <div class="float-right">
             <button nz-button (click)="onSubmitCourse()" class="ml-auto mr-2">
               1. Đồng bộ khóa học
