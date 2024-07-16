@@ -56,7 +56,7 @@
               Khóa học
             </nz-form-label>
             <nz-form-control nz-col [nzSpan]="20">
-              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Lựa chọn khóa học" [(ngModel)]="course.maKhoaHoc"
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Lựa chọn khóa học" [ngModel]="course.maKhoaHoc"
                 (ngModelChange)="courseSelectedChange($event)">
                 <nz-option *ngFor="let item of listCourse" [nzLabel]="item.tenKhoaHoc"
                   [nzValue]="item.maKhoaHoc"></nz-option>
@@ -93,7 +93,8 @@
               Trạng thái
             </nz-form-label>
             <nz-form-control nz-col [nzSpan]="16">
-              <input nz-input [(ngModel)]="course.state" name="state" [readonly]="true" />
+              <input nz-input [(ngModel)]="course.stateName"  name="stateName"
+                [readonly]="true" />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -135,11 +136,11 @@
         </div>
       </div>
       <div nz-row class="d-flex flex-row">
-        <div nz-col [nzSpan]="12">
+        <div nz-col [nzSpan]="8">
           <p style="color: red;"><b>Lưu ý: Cần chạy đồng bộ khóa học và học viên trước đồng bộ ảnh, đồng bộ đăng ký</b>
           </p>
         </div>
-        <div nz-col [nzSpan]="12">
+        <div nz-col [nzSpan]="16">
           <div class="float-right">
             <button nz-button (click)="onSubmitCourse()" class="ml-auto mr-2">
               1. Đồng bộ khóa học

@@ -16,6 +16,7 @@ import { SubmitFormUploadComponent } from './submit-form-upload/submit-form-uplo
 import { CourseService } from 'src/app/_core/api/course/course.service';
 import { CourseData } from 'src/app/_core/api/course/course-data';
 import { SubmitTypeEnum } from 'src/app/_core/enum/submit-type-enum';
+import { RecordStatePipe } from 'src/app/_share/pipe/record-state.pipe';
 
 @Component({
   selector: 'app-report-one',
@@ -44,7 +45,7 @@ export class ReportOneComponent implements OnInit {
     private notifyService: NotifyService,
     private shareService: ShareService,
     private courseData: CourseData,
-    private element: ElementRef,
+    private element: ElementRef
   ) { }
 
   ngOnInit(): void {
@@ -63,7 +64,11 @@ export class ReportOneComponent implements OnInit {
   courseSelectedChange(event: any) {
     console.log(event);
     if (event != null) {
+      this.course = new CourseModel();
       this.course = this.listCourse.filter(c => c.maKhoaHoc == event)[0];
+      this.course.stateName = new RecordStatePipe().transformValue(this.course.state);
+      console.log(this.course);
+      this.emitEventLoadDataDriver();
     }
   }
 
@@ -87,7 +92,7 @@ export class ReportOneComponent implements OnInit {
   }
 
   emitEventLoadDataDriver() {
-    this.shareService.isTabDriver.next(true);
+    this.shareService.isLoadDriverByCourseId.next(this.course.id);
   }
 
   onUploadXml() {
@@ -125,7 +130,7 @@ export class ReportOneComponent implements OnInit {
               // clear file
               this.file = {};
               this.fileList = []
-
+              this.getCourses();
             },
             error: (res) => {
               console.log(res);
@@ -140,8 +145,11 @@ export class ReportOneComponent implements OnInit {
   getCourses() {
     this.reportOneData.searchCourse(1, 9999).subscribe({
       next: (res) => {
-        console.log(res);
         this.listCourse = res.pagingData.content;
+        // this.listCourse.forEach(value => {
+        //     value.stateName = RecordStatePipe.transformValue(value.state);
+        // })
+        console.log(this.listCourse);
       },
       error: (error) => {
         console.log(error);

@@ -41,10 +41,14 @@
             <th nzAlign="center" nzColumnKey="maDK" [nzSortFn]="true">Mã đăng ký</th>
             <th nzAlign="center" nzColumnKey="hoVaTen" [nzSortFn]="true">Họ và tên</th>
             <th nzAlign="center" nzColumnKey="soCMT" [nzSortFn]="true">Số CMT</th>
-            <th nzAlign="center">Giới tính</th>
+            <!-- <th nzAlign="center">Giới tính</th> -->
             <th nzAlign="center" nzColumnKey="ngaySinh" [nzSortFn]="true">Ngày sinh</th>
-            <th nzAlign="center">Trạng thái</th>
-            <th nzAlign="center">Ghi chú</th>
+            <th nzAlign="center">Trạng thái học viên</th>
+            <th nzAlign="center">Ghi chú học viên</th>
+            <th nzAlign="center">Trạng thái ảnh</th>
+            <th nzAlign="center">Ghi chú ảnh</th>
+            <th nzAlign="center">Trạng thái đăng ký</th>
+            <th nzAlign="center">Ghi chú đăng ký</th>
           </tr>
         </thead>
         <tbody>
@@ -64,17 +68,29 @@
             <td nzAlign="center">
               {{ item.soCMT }}
             </td>
-            <td nzAlign="center">
+            <!-- <td nzAlign="center">
               {{ item.gioiTinh }}
-            </td>
+            </td> -->
             <td nzAlign="center">
               {{ item.ngaySinh | date : 'yyyy-MM-dd' }}
             </td>
             <td nzAlign="center">
-              {{ item.state }}
+              {{ item.state | recordState }}
             </td>
             <td nzAlign="center">
               {{ item.error }}
+            </td>
+            <td nzAlign="center">
+              {{ item.stateProfile | recordState }}
+            </td>
+            <td nzAlign="center">
+              {{ item.errorProfile }}
+            </td>
+            <td nzAlign="center">
+              {{ item.stateEnroll | recordState }}
+            </td>
+            <td nzAlign="center">
+              {{ item.errorEnroll }}
             </td>
 
           </tr>

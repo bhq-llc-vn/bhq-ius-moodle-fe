@@ -24,7 +24,7 @@ export class DriverComponent implements OnInit {
     private notifyService: NzNotificationService,
     private shareService: ShareService,
     private element: ElementRef
-  ) {}
+  ) { }
 
 
   @Output() onSubmitEvent = new EventEmitter();
@@ -39,6 +39,7 @@ export class DriverComponent implements OnInit {
   public txtSearch: string | undefined;
   public totalElements = 0;
   public totalPages: number | undefined;
+  private courseId: number | undefined;
 
   checkedBoxAll = false;
   FilterValue = '';
@@ -50,34 +51,24 @@ export class DriverComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.getDriver();
+    // this.getDriver();
     console.log(this.listId);
-    this.isUploadFileSuccess();
-    this.isLoadingData();
+    // this.isUploadFileSuccess();
+    this.isLoadingDataByCourseId();
   }
 
-  isUploadFileSuccess() {
-    this.shareService.isUploadingSuccess.subscribe({
+  isLoadingDataByCourseId() {
+    this.shareService.isLoadDriverByCourseId.subscribe({
       next: (res) => {
         console.log(res);
-        if(res) {
-          this.txtSearch = "";
-          this.getDriver();
-        }
-      }
-    })
-  }
-
-  isLoadingData() {
-    this.shareService.isTabDriver.subscribe({
-      next: (res) => {
-        console.log(res);
-        if(res) {
-          this.txtSearch = "";
-          this.getDriver();
+        if (res) {
+          this.courseId = res;
+          this.getDriver(this.courseId);
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        console.log(err);
+      },
       complete: () => {
 
       }
@@ -90,10 +81,10 @@ export class DriverComponent implements OnInit {
 
   search() {
     const input = this.element.nativeElement.querySelector('#search');
-    if(input.value != null || input.value != "") {
+    if (input.value != null || input.value != "") {
       this.txtSearch = `maDK.cn.${input.value},`;
     }
-    this.getDriver();
+    this.getDriver(this.courseId);
   }
 
   getFilterValue(index: number) {
@@ -104,12 +95,12 @@ export class DriverComponent implements OnInit {
 
   changePageSize(event: any) {
     this.pageSize = event;
-    this.getDriver();
+    this.getDriver(this.courseId);
   }
 
   changePageNumber(event: any) {
     this.pageNumber = event;
-    this.getDriver();
+    this.getDriver(this.courseId);
   }
 
   checkedAll(event: any) {
@@ -149,9 +140,9 @@ export class DriverComponent implements OnInit {
     }
   }
 
-  public getDriver() {
+  public getDriver(courseId?: number | undefined) {
     this.service
-      .searchDriver(this.pageNumber, this.pageSize, this.txtSearch, this.sortValue)
+      .searchDriver(this.pageNumber, this.pageSize, this.txtSearch, this.sortValue, courseId)
       .subscribe({
         next: (res) => {
           console.log(res);
@@ -171,7 +162,7 @@ export class DriverComponent implements OnInit {
       .create({
         nzTitle: 'Đẩy hồ sơ lên hệ thống',
         nzContent: SubmitFormComponent,
-        nzClassName:'modal-custom',
+        nzClassName: 'modal-custom',
         nzWidth: '400px',
         nzCentered: true,
         nzMaskClosable: false,
@@ -191,7 +182,7 @@ export class DriverComponent implements OnInit {
               this.modalOptions
             );
           }
-          this.getDriver();
+          this.getDriver(this.courseId);;
         },
         error: (res) => {
           console.log(res);
@@ -204,7 +195,7 @@ export class DriverComponent implements OnInit {
       .create({
         nzTitle: 'Đẩy hồ sơ lên hệ thống',
         nzContent: SubmitFormComponent,
-        nzClassName:'modal-custom',
+        nzClassName: 'modal-custom',
         nzWidth: '400px',
         nzCentered: true,
         nzMaskClosable: false,
@@ -224,7 +215,7 @@ export class DriverComponent implements OnInit {
               this.modalOptions
             );
           }
-          this.getDriver();
+          this.getDriver(this.courseId);
         },
         error: (res) => {
           console.log(res);
@@ -237,7 +228,7 @@ export class DriverComponent implements OnInit {
       .create({
         nzTitle: 'Đẩy ảnh lên hệ thống',
         nzContent: SubmitFormComponent,
-        nzClassName:'modal-custom',
+        nzClassName: 'modal-custom',
         nzWidth: '400px',
         nzCentered: true,
         nzMaskClosable: false,
@@ -275,7 +266,9 @@ export class DriverComponent implements OnInit {
       let str = sortField + "_" + sortOrder + ","
       this.sortValue = str;
     }
-    this.getDriver();
+    if (this.courseId) {
+      this.getDriver(this.courseId);
+    }
   }
 
 }

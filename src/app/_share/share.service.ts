@@ -24,6 +24,7 @@ export class ShareService {
   public isUploadingSuccess: Subject<boolean> = new Subject<boolean>();
   public isTabCourse: Subject<boolean> = new Subject<boolean>();
   public isTabDriver: Subject<boolean> = new Subject<boolean>();
+  public isLoadDriverByCourseId: Subject<any> = new Subject<any>();
   // end events
 
   //store data

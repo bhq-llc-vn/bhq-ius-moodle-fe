@@ -10,6 +10,7 @@ import { DriverComponent } from './driver.component';
 import { DriverRoutingModule } from './driver-routing.module';
 import { DriverFormComponent } from './driver-form/driver-form.component';
 import { SubmitFormComponent } from './submit-form/submit-form.component';
+import { ShareModule } from 'src/app/_share/share.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SubmitFormComponent } from './submit-form/submit-form.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ShareModule
   ],
   exports: [
     DriverComponent

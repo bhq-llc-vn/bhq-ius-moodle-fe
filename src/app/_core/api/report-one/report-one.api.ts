@@ -12,11 +12,11 @@ export class ReportOneApi {
 
   constructor(private http: HttpService) { }
 
-  searchDriver(pageNumber: number, pageSize: number, txtSearch?: string | undefined, sort?: string | undefined): Observable<any> {
-    // let params = new HttpParams().set('pageNumber', pageNumber).set('pageSize', pageSize);
+  searchDriver(pageNumber: number, pageSize: number, txtSearch?: string | undefined, sort?: string | undefined, courseId?: number | undefined): Observable<any> {
     let url = '';
     if (txtSearch) url = '&search=' + txtSearch;
     if (sort) url = url + '&sort=' + sort;
+    if (courseId) url = url + '&courseId=' + courseId;
     return this.http.get(
       `${this.apiDriverUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}${url}`
     );

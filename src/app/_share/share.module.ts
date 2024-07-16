@@ -33,7 +33,8 @@ import { RecordStatePipe } from './pipe/record-state.pipe';
     HasPermissionDirective,
     TestDirective,
     StateTaskPipe,
-    ValueArrayPipe
+    ValueArrayPipe,
+    RecordStatePipe
   ],
   providers: [
     ShareService,

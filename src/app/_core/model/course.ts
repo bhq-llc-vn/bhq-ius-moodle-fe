@@ -40,6 +40,7 @@ export class CourseModel extends BaseEntity {
   error: string;
   ngayGui: string;
   nguoiGui: string;
+  stateName: string;
   isChecked: Boolean;
 
   constructor() {
@@ -72,6 +73,7 @@ export class CourseModel extends BaseEntity {
     this.error = ';'
     this.ngayGui = '';
     this.nguoiGui = '';
+    this.stateName = '';
   }
 }
 

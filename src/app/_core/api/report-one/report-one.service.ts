@@ -8,8 +8,8 @@ export class ReportOneService implements ReportOneData {
 
   constructor(private api: ReportOneApi) { }
 
-  searchDriver(pageNumber: number, pageSize: number, txtSearch?: string | undefined, sort?: string | undefined): Observable<any> {
-    return this.api.searchDriver(pageNumber, pageSize, txtSearch, sort);
+  searchDriver(pageNumber: number, pageSize: number, txtSearch?: string | undefined, sort?: string | undefined, courseId?: number | undefined): Observable<any> {
+    return this.api.searchDriver(pageNumber, pageSize, txtSearch, sort, courseId);
   }
 
   searchCourse(pageNumber: number, pageSize: number, txtSearch?: string | undefined): Observable<any> {
