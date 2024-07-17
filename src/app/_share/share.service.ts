@@ -9,22 +9,15 @@ export class ShareService {
   public permissionsShare: Subject<any> = new Subject<any>();
 
   // events
-  public isAddRow: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isOutSide: Subject<any> = new Subject<any>();
-  public isInside: Subject<any> = new Subject<any>();
   public isLoading: Subject<boolean> = new Subject<boolean>(); // dung cho spinner
   public isAddSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isDialogSave: Subject<any> = new Subject<any>();
-  public isAddSubTask: Subject<any> = new Subject<any>();
-  public isCollapseDetailTask: Subject<any> = new Subject<any>();
-  public isCloseDetailTask: Subject<boolean> = new Subject<boolean>();
-  public isFilterTask: Subject<any> = new Subject<any>();
-  public isSortTask: Subject<any> = new Subject<any>();
   public isLoadingModal: Subject<boolean> = new Subject<boolean>(); // dung cho spinner tại modal
   public isUploadingSuccess: Subject<boolean> = new Subject<boolean>();
   public isTabCourse: Subject<boolean> = new Subject<boolean>();
   public isTabDriver: Subject<boolean> = new Subject<boolean>();
   public isLoadDriverByCourseId: Subject<any> = new Subject<any>();
+  public isLoadingListId: Subject<any> = new Subject<any>();
   // end events
 
   //store data

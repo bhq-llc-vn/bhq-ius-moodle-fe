@@ -32,7 +32,7 @@ export class ReportOneService implements ReportOneData {
     return this.api.submitEnroll(data);
   }
 
-  getReportOneInfo(id: number): Observable<any> {
+  getReportOneInfo(id?: number): Observable<any> {
     return this.api.getReportOneInfo(id);
   }
 

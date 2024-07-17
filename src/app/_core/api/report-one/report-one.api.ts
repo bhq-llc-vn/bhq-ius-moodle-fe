@@ -45,8 +45,10 @@ export class ReportOneApi {
     return this.http.post(this.apiReportOneUrl + '/submit-enroll', data);
   }
 
-  getReportOneInfo(id: number): Observable<any> {
-    return this.http.get(this.apiReportOneUrl + '/get-report-one-info/' + id);
+  getReportOneInfo(id?: number): Observable<any> {
+    const params = new HttpParams();
+    if (id) params.set('id', id);
+    return this.http.get(this.apiReportOneUrl + '/get-report-one-info', params);
   }
 
   uploadFileXml(file: File): Observable<any> {

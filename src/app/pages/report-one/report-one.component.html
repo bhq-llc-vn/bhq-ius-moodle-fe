@@ -99,42 +99,6 @@
           </nz-form-item>
         </div>
       </div>
-      <nz-divider nzText="THÔNG TIN QUÁ TRÌNH ĐỒNG BỘ" nzOrientation="left"></nz-divider>
-      <div nz-row class="d-flex flex-row">
-        <div nz-col [nzSpan]="8">
-          <nz-form-item nz-row [nzGutter]="2">
-            <nz-form-label nz-col [nzSpan]="6">
-              Học viên
-            </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="18" *ngIf="reportOneInfo.driverSuccess != null">
-              Thành công: {{reportOneInfo.driverSuccess}} - Thất bại: {{reportOneInfo.driverFailed}} - Chưa đồng bộ:
-              {{reportOneInfo.driverNotSubmitted}}
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="8">
-          <nz-form-item nz-row [nzGutter]="2">
-            <nz-form-label nz-col [nzSpan]="6">
-              Ảnh đại diện
-            </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="18" *ngIf="reportOneInfo.profileSuccess!= null">
-              Thành công: {{reportOneInfo.profileSuccess}} - Thất bại: {{reportOneInfo.profileFailed}} - Chưa đồng bộ:
-              {{reportOneInfo.profileNotSubmitted}}
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="8">
-          <nz-form-item nz-row [nzGutter]="2">
-            <nz-form-label nz-col [nzSpan]="6">
-              Đăng ký
-            </nz-form-label>
-            <nz-form-control nz-col [nzSpan]="18" *ngIf="reportOneInfo.enrollSuccess != null">
-              Thành công: {{reportOneInfo.enrollSuccess}} - Thất bại: {{reportOneInfo.enrollFailed}} - Chưa đồng bộ:
-              {{reportOneInfo.enrollNotSubmitted}}
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div>
       <div nz-row class="d-flex flex-row">
         <div nz-col [nzSpan]="8">
           <p style="color: red;"><b>Lưu ý: Cần chạy đồng bộ khóa học và học viên trước đồng bộ ảnh, đồng bộ đăng ký</b>
@@ -159,7 +123,49 @@
       </div>
       <nz-divider nzText="DANH SÁCH HỌC VIÊN" nzOrientation="left"></nz-divider>
       <div nz-row class="d-flex flex-row">
-        <app-driver (onSubmitEvent)="onSubmitEvent($event)" class="app-driver pl-3 pr-3"></app-driver>
+        <app-driver class="app-driver pl-3 pr-3"></app-driver>
+      </div>
+      <nz-divider nzText="THÔNG TIN QUÁ TRÌNH ĐỒNG BỘ CỦA HỆ THỐNG" nzOrientation="left"></nz-divider>
+      <div nz-row class="d-flex flex-row">
+        <div nz-col [nzSpan]="18">
+          <nz-form-item nz-row>
+            <nz-form-label nz-col [nzSpan]="8">
+              <b>Học viên</b>
+            </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="16">
+              Thành công: {{reportOneInfo.driverSuccess}} - Thất bại: {{reportOneInfo.driverFailed}} - Chưa đồng bộ:
+              {{reportOneInfo.driverNotSubmitted}}
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row class="d-flex flex-row">
+        <div nz-col [nzSpan]="18">
+          <nz-form-item nz-row>
+            <nz-form-label nz-col [nzSpan]="8">
+              <b>Ảnh đại diện</b>
+            </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="16">
+              Thành công: {{reportOneInfo.profileSuccess}} - Thất bại: {{reportOneInfo.profileFailed}} - Chưa đồng bộ:
+              {{reportOneInfo.profileNotSubmitted}}
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      
+      <div nz-row class="d-flex flex-row">
+        <div nz-col [nzSpan]="18">
+          <nz-form-item nz-row>
+            <nz-form-label nz-col [nzSpan]="8">
+              <b>Đăng ký</b>
+            </nz-form-label>
+            <nz-form-control nz-col [nzSpan]="16">
+              Thành công: {{reportOneInfo.enrollSuccess}} - Thất bại: {{reportOneInfo.enrollFailed}} - Chưa đồng bộ:
+              {{reportOneInfo.enrollNotSubmitted}}
+            </nz-form-control>
+          </nz-form-item>
+        </div>
       </div>
     </div>
 

@@ -27,8 +27,6 @@ export class DriverComponent implements OnInit {
   ) { }
 
 
-  @Output() onSubmitEvent = new EventEmitter();
-
   public listData: any;
   public listId: number[] = [];
   public searchField = ['Name', 'Email', 'Advanced Filter'];
@@ -122,7 +120,7 @@ export class DriverComponent implements OnInit {
     this.checkIntoArr(index);
     // console.log(this.listData[index].isChecked);
     console.log(this.listId);
-    this.onSubmitEvent.next(this.listId);
+    this.shareService.isLoadingListId.next(this.listId);    
   }
 
   checkIntoArr(index: number) {
@@ -157,104 +155,6 @@ export class DriverComponent implements OnInit {
       });
   }
 
-  onSubmit(): void {
-    this.modalService
-      .create({
-        nzTitle: 'Đẩy hồ sơ lên hệ thống',
-        nzContent: SubmitFormComponent,
-        nzClassName: 'modal-custom',
-        nzWidth: '400px',
-        nzCentered: true,
-        nzMaskClosable: false,
-        nzDirection: 'ltr', // left to right
-        nzComponentParams: {
-          listId: this.listId,
-          type: SubmitTypeEnum.DRIVER
-        }
-      })
-      .afterClose.subscribe({
-        next: (res) => {
-          console.log(res);
-          if (res) {
-            this.notifyService.success(
-              'Thành công',
-              'Đẩy hồ sơ',
-              this.modalOptions
-            );
-          }
-          this.getDriver(this.courseId);;
-        },
-        error: (res) => {
-          console.log(res);
-        },
-      });
-  }
-
-  onSubmitCourse(): void {
-    this.modalService
-      .create({
-        nzTitle: 'Đẩy hồ sơ lên hệ thống',
-        nzContent: SubmitFormComponent,
-        nzClassName: 'modal-custom',
-        nzWidth: '400px',
-        nzCentered: true,
-        nzMaskClosable: false,
-        nzDirection: 'ltr', // left to right
-        nzComponentParams: {
-          listId: this.listId,
-          type: SubmitTypeEnum.DRIVER
-        }
-      })
-      .afterClose.subscribe({
-        next: (res) => {
-          console.log(res);
-          if (res) {
-            this.notifyService.success(
-              'Thành công',
-              'Đẩy hồ sơ',
-              this.modalOptions
-            );
-          }
-          this.getDriver(this.courseId);
-        },
-        error: (res) => {
-          console.log(res);
-        },
-      });
-  }
-
-  onSubmitAvatar(): void {
-    this.modalService
-      .create({
-        nzTitle: 'Đẩy ảnh lên hệ thống',
-        nzContent: SubmitFormComponent,
-        nzClassName: 'modal-custom',
-        nzWidth: '400px',
-        nzCentered: true,
-        nzMaskClosable: false,
-        nzDirection: 'ltr', // left to right
-        nzComponentParams: {
-          listId: this.listId,
-          type: SubmitTypeEnum.AVATAR
-        }
-      })
-      .afterClose.subscribe({
-        next: (res) => {
-          console.log(res);
-          if (res) {
-            this.notifyService.success(
-              'Thành công',
-              'Đẩy ảnh',
-              this.modalOptions
-            );
-          }
-          this.getDriver();
-        },
-        error: (res) => {
-          console.log(res);
-        },
-      });
-  }
 
   onQueryParamsChange(params: NzTableQueryParams): void {
     console.log(params);

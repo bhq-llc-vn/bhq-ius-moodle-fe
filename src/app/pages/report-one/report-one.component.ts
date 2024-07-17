@@ -52,7 +52,8 @@ export class ReportOneComponent implements OnInit {
     this.getCourses();
     setTimeout(() => {
       this.getReportOneInfo();
-    }, 2000)
+    }, 1000)
+    this.isLoadingListId();
   }
 
 
@@ -82,17 +83,25 @@ export class ReportOneComponent implements OnInit {
     }
   }
 
-  onSubmitEvent(event: any) {
-    console.log(event);
-    this.listId = event;
-  }
-
   emitEventLoadDataCourse() {
     this.shareService.isTabCourse.next(true);
   }
 
   emitEventLoadDataDriver() {
     this.shareService.isLoadDriverByCourseId.next(this.course.id);
+  }
+
+  isLoadingListId() {
+    this.shareService.isLoadingListId.subscribe({
+      next: (res) => {
+         if (res) {
+          this.listId = res
+         }
+      }, 
+      error: (err) => {
+          console.log(err)
+      },
+    })
   }
 
   onUploadXml() {
@@ -171,7 +180,7 @@ export class ReportOneComponent implements OnInit {
 
   getReportOneInfo() {
     console.log(this.reportOneInfo);
-    if (this.course != null && this.course.id != null && this.course.id != 0) {
+    // if (this.course != null && this.course.id != null && this.course.id != 0) {
       this.reportOneData.getReportOneInfo(this.course.id).subscribe({
         next: (res) => {
           console.log(res);
@@ -181,7 +190,7 @@ export class ReportOneComponent implements OnInit {
           console.log(error);
         }
       })
-    }
+    // }
   }
 
   onSubmitCourse() {
@@ -202,6 +211,7 @@ export class ReportOneComponent implements OnInit {
       .afterClose.subscribe({
         next: (res) => {
           console.log(res);
+          this.listId = [];
           this.getCourseById();
         },
         error: (res) => {
@@ -228,6 +238,7 @@ export class ReportOneComponent implements OnInit {
       .afterClose.subscribe({
         next: (res) => {
           console.log(res);
+          this.listId = [];
           this.emitEventLoadDataDriver();
         },
         error: (res) => {
@@ -254,6 +265,7 @@ export class ReportOneComponent implements OnInit {
       .afterClose.subscribe({
         next: (res) => {
           console.log(res);
+          this.listId = [];
           this.emitEventLoadDataDriver();
         },
         error: (res) => {
@@ -280,6 +292,7 @@ export class ReportOneComponent implements OnInit {
       .afterClose.subscribe({
         next: (res) => {
           console.log(res);
+          this.listId = [];
           this.emitEventLoadDataDriver();
         },
         error: (res) => {
