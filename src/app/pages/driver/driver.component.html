@@ -24,17 +24,17 @@
             <th nzAlign="center" nzWidth="50px">
               <label nz-checkbox [ngModel]="checkedBoxAll" (ngModelChange)="checkedAll($event)"></label>
             </th>
-            <th nzAlign="center" nzWidth="80px">STT</th>
+            <!-- <th nzAlign="center" nzWidth="80px">STT</th> -->
             <th nzAlign="center" nzColumnKey="maDK" [nzSortFn]="true">Mã đăng ký</th>
             <th nzAlign="center" nzColumnKey="hoVaTen" [nzSortFn]="true">Họ và tên</th>
             <th nzAlign="center" nzColumnKey="soCMT" [nzSortFn]="true">Số CMT</th>
             <!-- <th nzAlign="center">Giới tính</th> -->
             <th nzAlign="center" nzColumnKey="ngaySinh" [nzSortFn]="true">Ngày sinh</th>
-            <th nzAlign="center">Trạng thái học viên</th>
+            <th nzAlign="center" nzColumnKey="state" [nzSortFn]="true">Trạng thái học viên</th>
             <th nzAlign="center">Ghi chú học viên</th>
-            <th nzAlign="center">Trạng thái ảnh</th>
+            <th nzAlign="center" nzColumnKey="stateProfile" [nzSortFn]="true">Trạng thái ảnh</th>
             <th nzAlign="center">Ghi chú ảnh</th>
-            <th nzAlign="center">Trạng thái đăng ký</th>
+            <th nzAlign="center" nzColumnKey="stateEnroll" [nzSortFn]="true">Trạng thái đăng ký</th>
             <th nzAlign="center">Ghi chú đăng ký</th>
           </tr>
         </thead>
@@ -43,9 +43,9 @@
             <td nzAlign="center">
               <label nz-checkbox [ngModel]="item.isChecked" (ngModelChange)="isChecked($event, idx)"></label>
             </td>
-            <td nzAlign="center">
+            <!-- <td nzAlign="center">
               {{ idx + 1 }}
-            </td>
+            </td> -->
             <td nzAlign="center">
               {{ item.maDK }}
             </td>

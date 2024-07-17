@@ -50,11 +50,9 @@ export class LoginComponent implements OnInit {
       let res: any = await firstValueFrom(this.authService.login(formData));
       if (res && res.accessToken) {
         localStorage.setItem('access_token', res.accessToken);
-        this.router.navigate(['pages']);
-        // setTimeout(() => {
-        //   this.router.navigate(['pages']);
+        // this.router.navigate(['pages']);
+        this.router.navigateByUrl('pages');
 
-        // }, 100);
 
       }
       else {

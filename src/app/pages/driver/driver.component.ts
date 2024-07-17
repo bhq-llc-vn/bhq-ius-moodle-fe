@@ -166,6 +166,8 @@ export class DriverComponent implements OnInit {
       let str = sortField + "_" + sortOrder + ","
       this.sortValue = str;
     }
+    console.log(this.sortValue);
+    console.log(this.courseId);
     if (this.courseId) {
       this.getDriver(this.courseId);
     }
