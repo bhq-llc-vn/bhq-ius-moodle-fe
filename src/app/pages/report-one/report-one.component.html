@@ -58,7 +58,7 @@
             <nz-form-control nz-col [nzSpan]="20">
               <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Lựa chọn khóa học" [ngModel]="course.maKhoaHoc"
                 (ngModelChange)="courseSelectedChange($event)">
-                <nz-option *ngFor="let item of listCourse" [nzLabel]="item.tenKhoaHoc"
+                <nz-option *ngFor="let item of listCourse" [nzLabel]="item.maKhoaHoc"
                   [nzValue]="item.maKhoaHoc"></nz-option>
               </nz-select>
             </nz-form-control>

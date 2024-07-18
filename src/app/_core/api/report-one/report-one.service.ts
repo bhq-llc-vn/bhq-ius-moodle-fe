@@ -16,20 +16,20 @@ export class ReportOneService implements ReportOneData {
     return this.api.searchCourse(pageNumber, pageSize, txtSearch);
   }
 
-  submitDriver(data: number[]): Observable<any> {
-    return this.api.submitDriver(data);
+  submitDriver(data: number[], courseId: number): Observable<any> {
+    return this.api.submitDriver(data, courseId);
   }
 
   submitCourse(data: number[]): Observable<any> {
     return this.api.submitCourse(data);
   }
 
-  submitAvatar(data: number[]): Observable<any> {
-    return this.api.submitAvatar(data);
+  submitAvatar(data: number[], courseId: number): Observable<any> {
+    return this.api.submitAvatar(data, courseId);
   }
 
-  submitEnroll(data: number[]): Observable<any> {
-    return this.api.submitEnroll(data);
+  submitEnroll(data: number[], courseId: number): Observable<any> {
+    return this.api.submitEnroll(data, courseId);
   }
 
   getReportOneInfo(id?: number): Observable<any> {

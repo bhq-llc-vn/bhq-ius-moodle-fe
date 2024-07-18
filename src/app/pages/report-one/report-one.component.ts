@@ -94,12 +94,12 @@ export class ReportOneComponent implements OnInit {
   isLoadingListId() {
     this.shareService.isLoadingListId.subscribe({
       next: (res) => {
-         if (res) {
+        if (res) {
           this.listId = res
-         }
-      }, 
+        }
+      },
       error: (err) => {
-          console.log(err)
+        console.log(err)
       },
     })
   }
@@ -137,9 +137,25 @@ export class ReportOneComponent implements OnInit {
             next: (res) => {
               console.log(res);
               // clear file
+              if (res.data) {
+                this.course = res.data
+                // this.course.stateName = new RecordStatePipe().transformValue(this.course.state);
+                switch (this.course.state) {
+                  case "SUBMITTED":
+                    this.course.stateName = "Đồng bộ thành công";
+                    break;
+                  case "FAILED":
+                    this.course.stateName = "Đồng bộ thất bại";
+                    break;
+                  default:
+                    this.course.stateName = "Chưa đồng bộ";
+                }
+              }
               this.file = {};
               this.fileList = []
-              this.getCourses();
+              this.getCourses()
+              this.emitEventLoadDataDriver();
+
             },
             error: (res) => {
               console.log(res);
@@ -181,15 +197,15 @@ export class ReportOneComponent implements OnInit {
   getReportOneInfo() {
     console.log(this.reportOneInfo);
     // if (this.course != null && this.course.id != null && this.course.id != 0) {
-      this.reportOneData.getReportOneInfo(this.course.id).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.reportOneInfo = res.data;
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      })
+    this.reportOneData.getReportOneInfo(this.course.id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.reportOneInfo = res.data;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
     // }
   }
 
@@ -232,7 +248,8 @@ export class ReportOneComponent implements OnInit {
         nzDirection: 'ltr', // left to right
         nzComponentParams: {
           listId: this.listId,
-          type: SubmitTypeEnum.DRIVER
+          type: SubmitTypeEnum.DRIVER,
+          courseId: this.course.id
         }
       })
       .afterClose.subscribe({
@@ -259,7 +276,8 @@ export class ReportOneComponent implements OnInit {
         nzDirection: 'ltr', // left to right
         nzComponentParams: {
           listId: this.listId,
-          type: SubmitTypeEnum.AVATAR
+          type: SubmitTypeEnum.AVATAR,
+          courseId: this.course.id
         }
       })
       .afterClose.subscribe({
@@ -286,7 +304,8 @@ export class ReportOneComponent implements OnInit {
         nzDirection: 'ltr', // left to right
         nzComponentParams: {
           listId: this.listId,
-          type: SubmitTypeEnum.ENROLL
+          type: SubmitTypeEnum.ENROLL,
+          courseId: this.course.id
         }
       })
       .afterClose.subscribe({

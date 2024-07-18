@@ -23,26 +23,34 @@ export class ReportOneApi {
   }
 
   searchCourse(pageNumber: number, pageSize: number, txtSearch?: string | undefined): Observable<any> {
-    // let params = new HttpParams().set('pageNumber', pageNumber).set('pageSize', pageSize);
     return this.http.get(
       `${this.apiCourseUrl}?pageNumber=${pageNumber}&pageSize=${pageSize}&search=${txtSearch}`
     );
   }
 
-  submitDriver(data: number[]): Observable<any> {
-    return this.http.post(this.apiReportOneUrl + '/submit-driver', data);
+  submitDriver(data: number[], courseId: number): Observable<any> {
+    // const params = new HttpParams();
+    // params.set('courseId', courseId);
+    let url = '/submit-driver' + '?courseId=' + courseId;
+    return this.http.post(this.apiReportOneUrl + url, data);
   }
 
   submitCourse(data: number[]): Observable<any> {
     return this.http.post(this.apiReportOneUrl + '/submit-course', data);
   }
 
-  submitAvatar(data: number[]): Observable<any> {
-    return this.http.post(this.apiReportOneUrl + '/submit-avatar', data);
+  submitAvatar(data: number[], courseId: number): Observable<any> {
+    // const params = new HttpParams();
+    // params.set('courseId', courseId);
+    let url = '/submit-avatar' + '?courseId=' + courseId;
+    return this.http.post(this.apiReportOneUrl + url, data);
   }
 
-  submitEnroll(data: number[]): Observable<any> {
-    return this.http.post(this.apiReportOneUrl + '/submit-enroll', data);
+  submitEnroll(data: number[], courseId: number): Observable<any> {
+    // const params = new HttpParams();
+    // params.set('courseId', courseId);
+    let url = '/submit-enroll' + '?courseId=' + courseId;
+    return this.http.post(this.apiReportOneUrl + url, data);
   }
 
   getReportOneInfo(id?: number): Observable<any> {

@@ -14,6 +14,7 @@ export class SubmitFormComponent implements OnInit {
   @Input() data: string = '';
   @Input() listId: number[] = [];
   @Input() type: string = '';
+  @Input() courseId: number = 0;
 
   isVisible = false;
   isConfirmLoading = false;
@@ -54,7 +55,7 @@ export class SubmitFormComponent implements OnInit {
     this.isConfirmLoading = true;
     switch (this.type) {
       case SubmitTypeEnum.AVATAR:
-        this.service.submitAvatar(this.listId).subscribe(res => {
+        this.service.submitAvatar(this.listId, this.courseId).subscribe(res => {
           if (res.status == 200) {
             this.isConfirmLoading = false;
             this.modalRef.close(true);
@@ -62,7 +63,7 @@ export class SubmitFormComponent implements OnInit {
         })
         break;
       case SubmitTypeEnum.DRIVER:
-        this.service.submitDriver(this.listId).subscribe(res => {
+        this.service.submitDriver(this.listId, this.courseId).subscribe(res => {
           if (res.status == 200) {
             this.isConfirmLoading = false;
             this.modalRef.close(true);

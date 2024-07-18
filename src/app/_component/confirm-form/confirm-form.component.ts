@@ -19,6 +19,7 @@ export class ConfirmFormComponent implements OnInit {
   @Input() data: string = '';
   @Input() listId: number[] = [];
   @Input() type: string = '';
+  @Input() courseId: number = 0;
 
   isVisible = false;
   isConfirmLoading = false;
@@ -58,13 +59,14 @@ export class ConfirmFormComponent implements OnInit {
   ngOnInit(): void {
     // this.data = 'Bạn có chắc muốn xóa ????';
     this.buildMessage();
+    console.log(this.courseId)
   }
 
   handleOk(): void {
     this.isConfirmLoading = true;
     switch (this.type) {
       case SubmitTypeEnum.AVATAR:
-        this.service.submitAvatar(this.listId).subscribe(res => {
+        this.service.submitAvatar(this.listId, this.courseId).subscribe(res => {
           if (res.status == 200) {
             this.notifyService.success("Đồng bộ ảnh đại diện");
           }
@@ -77,7 +79,7 @@ export class ConfirmFormComponent implements OnInit {
         })
         break;
       case SubmitTypeEnum.DRIVER:
-        this.service.submitDriver(this.listId).subscribe(res => {
+        this.service.submitDriver(this.listId, this.courseId).subscribe(res => {
           if (res.status == 200) {
             this.notifyService.success("Đồng bộ học viên");
           }
@@ -101,7 +103,7 @@ export class ConfirmFormComponent implements OnInit {
         })
         break;
       case SubmitTypeEnum.ENROLL:
-        this.service.submitEnroll(this.listId).subscribe(res => {
+        this.service.submitEnroll(this.listId, this.courseId).subscribe(res => {
           if (res.status == 200) {
             this.notifyService.success("Đồng bộ đăng ký");
           }

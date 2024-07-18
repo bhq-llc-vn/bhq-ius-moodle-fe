@@ -63,7 +63,7 @@ export class SubmitFormUploadComponent implements OnInit {
               this.shareService.isUploadingSuccess.next(true);
             }
             this.isConfirmLoading = false;
-            this.handleCancel();
+            this.modalRef.close(res);
           },
           error: (err) => {
             console.log(err);
